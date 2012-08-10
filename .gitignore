@@ -1,0 +1,11 @@
+/.projects
+target/
+*.bak
+*.log
+*.pdf
+/.idea
+/out/**
+/gen/**
+local.properties
+/tmp/**
+*.iml

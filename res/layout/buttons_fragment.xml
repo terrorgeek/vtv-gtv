@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+        >
+
+    <Button
+            android:id="@+id/loginButton"
+            android:layout_width="72px"
+            android:layout_height="65px"
+            android:background="@drawable/login_button_logging"
+            android:textOn=""
+            android:textOff=""
+            />
+    <ToggleButton
+            android:id="@+id/notificationsButton"
+            android:layout_width="72px"
+            android:layout_height="65px"
+            android:background="@drawable/notifications_button"
+            android:textOn=""
+            android:textOff=""
+            />
+    <ToggleButton
+            android:id="@+id/friendsButton"
+            android:layout_width="72px"
+            android:layout_height="65px"
+            android:background="@drawable/friends_button"
+            android:textOn=""
+            android:textOff=""
+            />
+    <ToggleButton
+            android:id="@+id/chatButton"
+            android:layout_width="72px"
+            android:layout_height="65px"
+            android:background="@drawable/chat_button"
+            android:textOn=""
+            android:textOff=""
+            />
+
+
+</LinearLayout>
