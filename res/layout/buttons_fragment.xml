@@ -1,42 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-        >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/BasicViewFilledHorizontally">
 
-    <Button
-            android:id="@+id/loginButton"
-            android:layout_width="72px"
-            android:layout_height="65px"
-            android:background="@drawable/login_button_logging"
-            android:textOn=""
-            android:textOff=""
-            />
-    <ToggleButton
-            android:id="@+id/notificationsButton"
-            android:layout_width="72px"
-            android:layout_height="65px"
-            android:background="@drawable/notifications_button"
-            android:textOn=""
-            android:textOff=""
-            />
-    <ToggleButton
-            android:id="@+id/friendsButton"
-            android:layout_width="72px"
-            android:layout_height="65px"
-            android:background="@drawable/friends_button"
-            android:textOn=""
-            android:textOff=""
-            />
-    <ToggleButton
-            android:id="@+id/chatButton"
-            android:layout_width="72px"
-            android:layout_height="65px"
-            android:background="@drawable/chat_button"
-            android:textOn=""
-            android:textOff=""
-            />
+    <Button android:id="@+id/loginButton"
+            style="@style/BasicViewWrapped"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
+            android:background="@drawable/tab_bar_icon_logo"
+            android:layout_centerVertical="true"/>
 
+    <LinearLayout android:id="@+id/tabBar"
+                  style="@style/TabBar"
+                  android:paddingLeft="100dip"
+                  android:paddingRight="40dip"
+                  android:visibility="invisible">
 
-</LinearLayout>
+        <RadioGroup style="@style/BasicViewFilledHorizontally"
+                    android:orientation="horizontal">
+
+            <RadioButton android:id="@+id/dashboardButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_dashboard_selector"
+                         android:text="@string/dashboard"/>
+
+            <RadioButton android:id="@+id/programInfoButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_program_info_selector"
+                         android:text="@string/program_info"/>
+
+            <RadioButton android:id="@+id/guideButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_schedule_selector"
+                         android:text="@string/guide"/>
+
+            <RadioButton android:id="@+id/scheduleButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_calendar_selector"
+                         android:clickable="false"
+                         android:text="@string/schedule"/>
+
+            <RadioButton android:id="@+id/notificationsButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_notifications_selector"
+                         android:clickable="false"
+                         android:text="@string/notifications"/>
+
+            <RadioButton android:id="@+id/friendsButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_friends_selector"
+                         android:clickable="false"
+                         android:text="@string/friends"/>
+
+            <RadioButton android:id="@+id/socialTrendsButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_social_trends_selector"
+                         android:clickable="false"
+                         android:text="@string/social_trends"/>
+
+            <RadioButton android:id="@+id/settingsButton"
+                         style="@style/TabBarIcon"
+                         android:drawableTop="@drawable/tab_bar_icon_settings_selector"
+                         android:clickable="false"
+                         android:text="@string/settings"/>
+        </RadioGroup>
+
+        <Button android:id="@+id/callButton"
+                style="@style/BasicViewWrapped"
+                android:visibility="visible"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

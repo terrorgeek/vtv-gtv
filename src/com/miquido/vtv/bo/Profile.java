@@ -10,21 +10,16 @@ import java.util.Date;
  * User profile.
  */
 @Data
-public class Profile {
+public class Profile extends Entity {
 
-    private String id;
     private String name;
-    private Date dateModified;
     private String description;
     private String firstName;
     private String lastName;
-    private String fullName;
-    private String email;
-    private String avatarId;
-    private String avatarURL;
+    private Id avatarId;
     private String facebookId;
 
     private boolean online=false;
-    private String watchedChannel=null;
-
+    private Id currentChannelId =null;
+    private Id requestedChannelId = null;
 }

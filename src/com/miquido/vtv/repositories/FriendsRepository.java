@@ -1,6 +1,8 @@
 package com.miquido.vtv.repositories;
 
 import com.google.inject.Singleton;
+import com.miquido.vtv.bo.Friendship;
+import com.miquido.vtv.bo.Id;
 import com.miquido.vtv.bo.Profile;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +19,8 @@ public class FriendsRepository {
 
     private boolean areFriendsLoading;
     @Getter @Setter String loadingErrorMessage;
-    private List<Profile> friends = null;
+    private List<Friendship> friends = null;
+    private Map<Id, Friendship> idFriendshipMap;
     private Date modifyTime = null;
 
     public FriendsRepository() {
@@ -35,16 +38,18 @@ public class FriendsRepository {
      *
      * @return null - not stored yet
      */
-    public synchronized List<Profile> getFriends() {
+    public synchronized List<Friendship> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<Profile> friends) {
-        List<Profile> friendsCopy = copy(friends);
-        synchronized (this) {
-            this.friends = friendsCopy;
+    public synchronized void setFriends(List<Friendship> friendships) {
+        this.friends = copy(friendships);
+        idFriendshipMap = new HashMap<Id, Friendship>();
+        for (Friendship friendship : friendships) {
+            idFriendshipMap.put(friendship.getId(), friendship);
         }
     }
+
 
     public void clearAll() {
         friends = null;
@@ -87,12 +92,12 @@ public class FriendsRepository {
 //    }
 //
 //
-    protected static List<Profile> copy(List<Profile> profiles) {
-        if (profiles==null)
+    protected static List<Friendship> copy(List<Friendship> friendships) {
+        if (friendships==null)
             return null;
-        List<Profile> newProfiles = new ArrayList<Profile>(profiles.size());
-        newProfiles.addAll(profiles);
-        return newProfiles;
+        List<Friendship> newFriendships = new ArrayList<Friendship>(friendships.size());
+        newFriendships.addAll(friendships);
+        return newFriendships;
     }
 //
 //    protected static List<Profile> sort(List<Profile> profiles) {

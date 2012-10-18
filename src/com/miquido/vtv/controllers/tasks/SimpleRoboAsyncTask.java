@@ -12,7 +12,7 @@ import roboguice.RoboGuice;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class SimpleRoboAsyncTask extends AsyncTask<Void,  Void, Void> {
-    protected Context context;
+    final protected Context context;
     private Exception exception;
     private Throwable throwable;
 
@@ -59,12 +59,12 @@ public abstract class SimpleRoboAsyncTask extends AsyncTask<Void,  Void, Void> {
     protected abstract void doInBackground() throws Exception;
 
     protected void onException(Exception e) {
-    };
+    }
     protected void onThrowable(Throwable t) {
-    };
+    }
     protected void onFinal() {
-    };
+    }
     protected void onSuccess() {
-    };
+    }
 
 }

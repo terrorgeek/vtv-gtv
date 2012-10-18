@@ -1,5 +1,6 @@
 package com.miquido.vtv.codsservices.internal.jsontransformers;
 
+import com.miquido.vtv.bo.Id;
 import com.miquido.vtv.bo.Profile;
 import com.miquido.vtv.codsservices.exceptions.CodsResponseFormatException;
 import org.json.JSONException;
@@ -17,13 +18,15 @@ import java.text.SimpleDateFormat;
  * To change this template use File | Settings | File Templates.
  */
 
-public class ProfileJsonReader implements JsonReader<Profile> {
+public class ProfileJsonReader extends BaseJsonReader<Profile> {
 
-    private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+    @Override
+    protected Class<Profile> getType() {
+        return Profile.class;
+    }
 
     public boolean isCorrectType(JSONObject jsonObject) {
-        return (jsonObject.has("id") && jsonObject.has("name") && jsonObject.has("full_name"));
+        return (jsonObject.has("id") && jsonObject.has("first_name") && jsonObject.has("last_name") && jsonObject.has("facebook_id"));
     }
 
     /**
@@ -35,23 +38,24 @@ public class ProfileJsonReader implements JsonReader<Profile> {
         Profile profile = new Profile();
 
         try {
-            profile.setId( jsonObject.getString("id"));
-            profile.setDateModified(dateFormat.parse(jsonObject.getString("date_modified")));
-            profile.setName(jsonObject.getString("name"));
-            profile.setDescription(jsonObject.getString("description"));
+            profile.setId(Id.severeValueOf(jsonObject.getString("id")));
+            profile.setDateModified(getDate(jsonObject, "date_modified"));
+            profile.setDateEntered(getDate(jsonObject, "date_entered"));
+            profile.setName(jsonObject.optString("name"));
+            profile.setDescription(jsonObject.optString("description"));
             profile.setFirstName(jsonObject.getString("first_name"));
             profile.setLastName(jsonObject.getString("last_name"));
-            profile.setFullName(jsonObject.getString("full_name"));
-            profile.setEmail(jsonObject.getString("email"));
-            profile.setAvatarId(jsonObject.getString("avatar_id"));
-            profile.setAvatarURL(jsonObject.optString("avatar_url"));
-            profile.setFacebookId(jsonObject.getString("facebook_id"));
+            profile.setFacebookId(jsonObject.optString("facebook_id"));
+            profile.setAvatarId(Id.valueOf(jsonObject.optString("avatar_id")));
+            profile.setOnline("online".equals(jsonObject.optString("sip_status")));
+            profile.setCurrentChannelId(Id.valueOf(jsonObject.optString("current_channel_id")));
+            profile.setRequestedChannelId(Id.valueOf(jsonObject.optString("requested_channel_id")));
 
             return profile;
         } catch (JSONException e) {
             throw new CodsResponseFormatException("Incorrect structure of Profile in JSON formatted response.", e);
         } catch (ParseException e) {
-            throw new CodsResponseFormatException("Incorrect format of data in field date_modified.", e);
+            throw new CodsResponseFormatException("Incorrect format of ID in profile structure.", e);
         }
     }
 

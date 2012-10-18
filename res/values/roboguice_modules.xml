@@ -1,5 +1,7 @@
 <resources>
     <string-array name="roboguice_modules">
-        <item>com.miquido.vtv.codsservices.CodsDaoModule</item>
+        <item>com.miquido.vtv.codsservices.internal.CodsDaoModule</item>
+        <item>com.miquido.vtv.domainservices.internal.DomainServicesModule</item>
+        <item>com.miquido.vtv.view.ViewModule</item>
     </string-array>
 </resources>

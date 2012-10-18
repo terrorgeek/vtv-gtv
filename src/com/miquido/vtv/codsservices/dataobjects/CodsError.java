@@ -12,5 +12,10 @@ import lombok.Data;
 @Data
 public class CodsError {
     private String status;
+    private int number;
     private String error;
+
+    public boolean isNotFound() {
+        return (number==404);
+    }
 }

@@ -2,6 +2,8 @@ package com.miquido.vtv.codsservices.dataobjects;
 
 
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,13 +12,15 @@ import lombok.Data;
  * Time: 11:37
  * To change this template use File | Settings | File Templates.
  */
-@Data
+@Data @RequiredArgsConstructor(suppressConstructorProperties = true)
 public class LoginInput {
 
+    @NonNull
     private String login;
     /**
      * MD5 Hashed password.
      */
+    @NonNull
     private String passwordHash;
 
     /**
@@ -24,9 +28,9 @@ public class LoginInput {
      */
     private String applicationName;
 
-    public LoginInput(String login, String passwordHash) {
-        this.login = login;
-        this.passwordHash = passwordHash;
-    }
+//    public LoginInput(String login, String passwordHash) {
+//        this.login = login;
+//        this.passwordHash = passwordHash;
+//    }
 
 }

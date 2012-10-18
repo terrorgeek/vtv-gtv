@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">vTV</string>
+    <string name="calendar">Calendar</string>
+    <string name="cast">Cast</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="friends">Friends</string>
+    <string name="friends_loading">Loading ...</string>
+    <string name="friends_header">Friends</string>
+    <string name="friends_requests">Friends requests</string>
+    <string name="friends_section_watchingSameChannel">Watching same channel</string>
+    <string name="friends_section_online">Online</string>
+    <string name="friends_section_offline">Offline</string>
+    <string name="current_channel_intro">You are watching now:</string>
+    <string name="channels_header">Channels</string>
+    <string name="no_channels">No channels</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_section_ongoing">Ongoing</string>
+    <string name="notifications_section_reminder">Reminders</string>
+    <string name="notification_text">Invites you to watch %s</string>
+    <string name="new_notification">New invitation from %s</string>
+    <string name="program_info">Program info</string>
+    <string name="schedule">Schedule</string>
+    <string name="settings">Settings</string>
+    <string name="similar_shows">Similar shows</string>
+    <string name="social_trends">Social Trends</string>
+    <string name="your_friends">Your friends</string>
+    <string name="guide">Guide</string>
+    <string name="unknown_program">Unknown program</string>
+    <string name="details_not_available">About the show unavailable.</string>
 </resources>

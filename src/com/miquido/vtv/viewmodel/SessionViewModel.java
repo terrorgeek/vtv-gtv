@@ -11,8 +11,10 @@ import com.miquido.vtv.bo.Profile;
  */
 public interface SessionViewModel {
 
-    boolean isLoggedIn();
     boolean isLoggingIn();
+    boolean isLoggedIn();
+    boolean isSessionInitializing();
+    boolean isSessionInitialized();
     Profile getUserProfile();
 
 }

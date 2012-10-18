@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/BasicFragment"
+              android:orientation="vertical"
+              android:paddingBottom="0dip">
+  <LinearLayout style="@style/BasicViewFilledHorizontally"
+                android:orientation="horizontal">
+    <LinearLayout style="@style/Column"
+                  android:layout_marginBottom="0dip">
+
+      <!-- Category header -->
+      <LinearLayout style="@style/Header">
+
+        <TextView style="@style/HeaderText"
+                  android:text="You're watching"/>
+
+        <ImageView style="@style/BasicViewFilledHorizontally"
+                   android:src="@drawable/header_line"
+                   android:scaleType="fitXY"/>
+
+      </LinearLayout>
+
+      <LinearLayout style="@style/BasicViewFilledHorizontally"
+                    android:layout_marginBottom="27dip">
+
+        <ImageView style="@style/BasicViewWrapped" android:id="@+id/currently_watching_thumbnail"
+            android:layout_width="50dip"
+            android:layout_height="50dip"/>
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="10dip">
+          <TextView style="@style/BasicViewFilledHorizontally"
+                    android:text="You are watching"
+                    android:textColor="@android:color/white"/>
+          <TextView style="@style/BasicViewFilledHorizontally"
+                    android:text="@string/unknown_program"
+                    android:id="@+id/currently_watching_title"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+        </LinearLayout>
+
+      </LinearLayout>
+
+      <!-- Category header -->
+      <LinearLayout style="@style/Header"
+                    android:layout_marginBottom="0dip">
+
+        <TextView style="@style/HeaderText"
+                  android:text="You're goinng to watch"/>
+
+        <ImageView style="@style/BasicViewFilledHorizontally"
+                   android:src="@drawable/header_line"
+                   android:scaleType="fitXY"/>
+
+      </LinearLayout>
+      <LinearLayout style="@style/BasicViewFilledHorizontally"
+                    android:orientation="vertical">
+
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:paddingTop="10dip"
+                      android:paddingBottom="10dip">
+
+          <ImageView style="@style/BasicViewWrapped"
+                     android:src="@drawable/dashboard_upcoming_sample_1"
+                     android:layout_width="50dip"
+                     android:layout_height="50dip"/>
+          <LinearLayout style="@style/BasicViewFilledHorizontally"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dip">
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="You are going to watch"
+                      android:textColor="@android:color/white"/>
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="True Blood"
+                      android:textColor="@android:color/white"
+                      android:textStyle="bold"/>
+          </LinearLayout>
+
+        </LinearLayout>
+        <ImageView style="@style/ListDivider"
+                   android:src="@drawable/friends_list_divider"/>
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:paddingTop="10dip"
+                      android:paddingBottom="10dip">
+
+          <ImageView style="@style/BasicViewWrapped"
+                     android:src="@drawable/dashboard_upcoming_sample_2"
+                     android:layout_width="50dip"
+                     android:layout_height="50dip"/>
+          <LinearLayout style="@style/BasicViewFilledHorizontally"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dip">
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="You are going to watch"
+                      android:textColor="@android:color/white"/>
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="Vampire Diaries"
+                      android:textColor="@android:color/white"
+                      android:textStyle="bold"/>
+          </LinearLayout>
+
+        </LinearLayout>
+        <ImageView style="@style/ListDivider"
+                   android:src="@drawable/friends_list_divider"/>
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:paddingTop="10dip"
+                      android:paddingBottom="10dip">
+
+          <ImageView style="@style/BasicViewWrapped"
+                     android:src="@drawable/dashboard_upcoming_sample_3"
+                     android:layout_width="50dip"
+                     android:layout_height="50dip"/>
+          <LinearLayout style="@style/BasicViewFilledHorizontally"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dip">
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="You are going to watch"
+                      android:textColor="@android:color/white"/>
+            <TextView style="@style/BasicViewFilledHorizontally"
+                      android:text="Poland vs England"
+                      android:textColor="@android:color/white"
+                      android:textStyle="bold"/>
+          </LinearLayout>
+
+        </LinearLayout>
+      </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/Column">
+
+      <LinearLayout style="@style/BasicViewFilledHorizontally"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dip">
+
+        <!-- Category header -->
+        <LinearLayout style="@style/Header">
+
+          <TextView style="@style/HeaderText"
+                    android:text="Friends watching"/>
+          <ImageView style="@style/BasicViewFilledHorizontally"
+                     android:src="@drawable/header_line"
+                     android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:orientation="vertical">
+          <ImageView style="@style/BasicViewWrapped"
+                     android:src="@drawable/dashboard_friends_watching"/>
+        </LinearLayout>
+      </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/Column">
+      <!-- Category header -->
+      <LinearLayout style="@style/Header">
+
+        <TextView style="@style/HeaderText"
+                  android:text="Shows"/>
+
+        <ImageView style="@style/BasicViewFilledHorizontally"
+                   android:src="@drawable/header_line"
+                   android:scaleType="fitXY"/>
+
+      </LinearLayout>
+
+      <LinearLayout style="@style/BasicViewFilledHorizontally"
+                    android:orientation="vertical">
+        <ImageView style="@style/BasicViewWrapped"
+                   android:src="@drawable/dashboard_shows"/>
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

@@ -9,6 +9,13 @@ package com.miquido.vtv.viewmodel;
  */
 public interface PanelsStateViewModel {
 
-    boolean isFriendsPanelOn();
+  boolean isApplicationVisible();
+
+  boolean isFriendsPanelOn();
+  boolean isChannelsPanelOn();
+  boolean isNotificationsPanelOn();
+  boolean isProgramInfoPanelOn();
+  boolean isDashboardPanelOn();
+  boolean isSchedulePanelOn();
 
 }

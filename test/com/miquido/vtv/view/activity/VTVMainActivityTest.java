@@ -1,9 +1,6 @@
 package com.miquido.vtv.view.activity;
 
-import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
@@ -11,7 +8,6 @@ import com.miquido.test.robolectric.RobolectricInjectionTestRunner;
 import com.miquido.vtv.R;
 import com.miquido.vtv.view.fragment.FriendsFragment;
 import com.xtremelabs.robolectric.Robolectric;
-import com.xtremelabs.robolectric.shadows.ShadowHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +39,7 @@ public class VTVMainActivityTest {
     public void setUp() {
         logger.debug("setUp");
 
-        Robolectric.addPendingHttpResponse(200, "{\"id\":\"89b99e2be7e1e835ccff199e1146411a\",\"module_name\":\"Users\",\"name_value_list\":{\"user_id\":{\"name\":\"user_id\",\"value\":\"48ca2e78-da4c-11e1-83cd-c263aa2dded5\"},\"user_name\":{\"name\":\"user_name\",\"value\":\"bob.smith@cods.pyctex.net\"}}}");
+        Robolectric.addPendingHttpResponse(200, "{\"id\":\"11b1ede86d5e03aebd88d450eea37ced\",\"user_id\":\"48ca2e78-da4c-11e1-83cd-c263aa2dded5\",\"user_name\":\"bob.smith@cods.pyctex.net\"}");
         Robolectric.addPendingHttpResponse(200, "{\"id\":\"12bb9aa9-fbdd-1e0a-c53a-4fff6358f941\",\"name\":\"Bob Smith\",\"date_entered\":\"2012-07-12 23:55:38\",\"date_modified\":\"2012-07-26 16:52:50\",\"description\":\"\",\"first_name\":\"Bob\",\"last_name\":\"Smith\",\"full_name\":\"Bob Smith\",\"email\":\"\",\"email1\":\"\",\"email2\":\"\",\"avatar_id\":\"8083a680-ebf9-2244-b346-4ff74b9c2ae8\",\"facebook_id\":\"\",\"sip_status\":\"offline\",\"avatar_url\":\"http:\\/\\/api.cods.pyctex.net\\/images\\/8083a680-ebf9-2244-b346-4ff74b9c2ae8\"}");
         Robolectric.addPendingHttpResponse(200, "{\"result_count\":20,\"total_count\":\"55\",\"next_offset\":20,\"entry_list\":[{\"id\":\"103782b6-aa79-f369-412a-4fff634bdd8b\",\"name\":\"Oscar Mcknight\",\"date_entered\":\"2012-07-12 23:55:38\",\"date_modified\":\"2012-07-12 23:55:38\",\"description\":\"\",\"first_name\":\"Oscar\",\"last_name\":\"Mcknight\",\"full_name\":\"Oscar Mcknight\",\"email\":\"\",\"email1\":\"\",\"email2\":\"\",\"avatar_id\":\"f171e97a-05d9-d464-80b8-4ff741476e0a\",\"facebook_id\":\"\",\"sip_status\":\"offline\",\"avatar_url\":\"http:\\/\\/api.cods.pyctex.net\\/images\\/f171e97a-05d9-d464-80b8-4ff741476e0a\",\"date_added_to_list\":\"2012-07-12 23:55:38\",\"SIP_status\":\"online\"},{\"id\":\"10c54e7d-e76e-69d9-824d-5003f8a0803a\",\"name\":\"Gilbert Coffey\",\"date_entered\":\"2012-07-16 11:19:35\",\"date_modified\":\"2012-07-16 11:19:35\",\"description\":\"\",\"first_name\":\"Gilbert\",\"last_name\":\"Coffey\",\"full_name\":\"Gilbert Coffey\",\"email\":\"\",\"email1\":\"\",\"email2\":\"\",\"avatar_id\":\"817d0ca5-f623-3c5b-9873-4ff74bef025a\",\"facebook_id\":\"\",\"sip_status\":\"offline\",\"avatar_url\":\"http:\\/\\/api.cods.pyctex.net\\/images\\/817d0ca5-f623-3c5b-9873-4ff74bef025a\",\"date_added_to_list\":\"2012-07-16 11:19:35\",\"SIP_status\":\"offline\"}]}");
 
@@ -75,6 +71,10 @@ public class VTVMainActivityTest {
         assertEquals(View.INVISIBLE, friendsFragment.getView().getVisibility());
         assertEquals(View.VISIBLE, friendsButton.getVisibility());
         assertEquals(loginButtonLoggedInDrawable, loginButton.getBackground());
+
+        // Load friends
+        assertEquals(1, Robolectric.getBackgroundScheduler().enqueuedTaskCount());
+        Robolectric.getBackgroundScheduler().runOneTask();
 
 //        logger.debug("Press friendsButton");
 //        friendsButton.performClick();

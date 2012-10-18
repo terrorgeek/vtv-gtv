@@ -4,21 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.GridView;
 import com.google.inject.Inject;
 import com.miquido.vtv.R;
-import com.miquido.vtv.domainservices.ProfilesService;
-import com.miquido.vtv.events.modelchanges.*;
+import com.miquido.vtv.bo.Friendship;
+import com.miquido.vtv.domainservices.CurrentChannelService;
+import com.miquido.vtv.events.modelchanges.CurrentChannelChanged;
+import com.miquido.vtv.events.modelchanges.FriendsModelChanged;
+import com.miquido.vtv.events.modelchanges.PanelsStateChanged;
+import com.miquido.vtv.viewmodel.PanelsStateViewModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import roboguice.event.Observes;
-import roboguice.fragment.RoboListFragment;
+import roboguice.fragment.RoboFragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,81 +27,62 @@ import java.util.Map;
  * Time: 17:13
  * To change this template use File | Settings | File Templates.
  */
-public class FriendsFragment extends RoboListFragment {
-    private static final Logger logger = LoggerFactory.getLogger(FriendsFragment.class);
+public class FriendsFragment extends RoboFragment {
+  private static final Logger logger = LoggerFactory.getLogger(FriendsFragment.class);
 
-    @Inject
-    private ProfilesService profilesService;
+  @Inject
+  FriendsSectionListAdapter friendsSectionListAdapter;
+  @Inject
+  CurrentChannelService currentChannelService;
+  @Inject
+  FriendsGridViewAdapter friendsGridViewAdapter;
+  private GridView friendsGridView;
 
-    private List<Map<String, String>> listData = new ArrayList<Map<String, String>>();
+  public FriendsFragment() {
+  }
 
-    public FriendsFragment() {
-        String [] data = new String[] {
-                "Sarah Roche", "Anikka Smith", "Ankur Pansari", "Aubrey Pansari", "Cameron Marlow", "Leah Pearlman", "Meredith Chin",
-                "Sarah Roche", "Anikka Smith", "Ankur Pansari", "Aubrey Pansari", "Cameron Marlow", "Leah Pearlman", "Meredith Chin",
-                "Sarah Roche", "Anikka Smith", "Ankur Pansari", "Aubrey Pansari", "Cameron Marlow", "Leah Pearlman", "Meredith Chin",
-                "Sarah Roche", "Anikka Smith", "Ankur Pansari", "Aubrey Pansari", "Cameron Marlow", "Leah Pearlman", "Meredith Chin",
-                "Sarah Roche", "Anikka Smith", "Ankur Pansari", "Aubrey Pansari", "Cameron Marlow", "Leah Pearlman", "Meredith Chin"
-        };
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    logger.debug("vTV: Friends Fragment onCreate");
+    logger.debug("friendsSectionListAdapter:" + friendsSectionListAdapter);
+    super.onCreate(savedInstanceState);
+  }
 
-        for(String line : data) {
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("text", line);
-            listData.add(map);
-        }
-    }
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    logger.debug("vTV: Friends Fragment onCreateView");
+    View view = inflater.inflate(R.layout.friends_fragment_new, container, false);
+    friendsGridView = (GridView) view.findViewById(android.R.id.list);
+    return view;
+  }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        logger.debug("vTV: Friends Fragment onCreate");
-        super.onCreate(savedInstanceState);
+  @Override
+  public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    logger.debug("vTV: Friends Fragment onActivityCreated");
+    friendsGridView.setAdapter(friendsGridViewAdapter);
+  }
 
-        this.setListAdapter(new SimpleAdapter(getActivity(), listData,
-                R.layout.friends_list, new String[] {"text"}, new int[] { R.id.friendNameListField}));
+  public void onPanelsStateChanged(@Observes PanelsStateChanged panelsStateChanged) {
+    logger.debug("onPanelsStateChanged");
+    PanelsStateViewModel panelsStateViewModel = panelsStateChanged.getPanelsStateViewModel();
+    boolean isFriendsPanelVisible = panelsStateViewModel.isApplicationVisible() && panelsStateViewModel.isFriendsPanelOn();
+    getView().setVisibility(isFriendsPanelVisible ? View.VISIBLE : View.INVISIBLE);
+  }
 
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        logger.debug("vTV: Friends Fragment onCreateView");
-        return inflater.inflate(R.layout.friend_fragment, container, false);
-    }
+  public void onFriendsModelChanged(@Observes FriendsModelChanged friendsModelChanged) {
+    logger.debug("onFriendsModelChanged");
+//    friendsSectionListAdapter.updateFriends(friendsModelChanged.getFriendsViewModel().getFriends());
+    List<Friendship> friends = friendsModelChanged.getFriendsViewModel().getFriends();
+    friendsGridViewAdapter.updateFriends(friends);
+//        if (getListAdapter()==null)
+//            this.setListAdapter(friendsSectionListAdapter);
+  }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        logger.debug("vTV: FriendsFragment onListItemClick");
-    }
 
-    public void onPanelsStateChanged(@Observes PanelsStateChanged panelsStateChanged) {
-        logger.debug("onPanelsStateChanged");
-        boolean isFriendsPanelOn = panelsStateChanged.getPanelsStateViewModel().isFriendsPanelOn();
-        getView().setVisibility( isFriendsPanelOn ? View.VISIBLE : View.INVISIBLE);
-    }
-
-    public void onFriendsModelInitialized(@Observes FriendsModelInitialized friendsModelInitialized) {
-        logger.debug("onFriendsModelInitialized");
-        // TODO
-    }
-
-    public void onFriendsModelChanged(@Observes FriendsModelChanged friendsModelChanged) {
-        logger.debug("onFriendsModelChanged");
-        // TODO
-    }
-
-    public void onFriendsModelCleared(@Observes FriendsModelCleared friendsModelCleared) {
-        logger.debug("onFriendsModelCleared");
-        // TODO
-    }
-
-    public void onFriendsLoadingStarted(@Observes FriendsLoadingStarted friendsLoadingStarted) {
-        logger.debug("onFriendsLoadingStarted");
-        // TODO
-    }
-
-    public void onFriendsLoadingFinished(@Observes FriendsLoadingFinished friendsLoadingFinished) {
-        logger.debug("onFriendsLoadingFinished");
-        // TODO
-    }
-
+  public void onCurrentChannelChanged(@Observes CurrentChannelChanged currentChannelChanged) {
+    logger.debug("onCurrentChannelChanged");
+    friendsSectionListAdapter.updateCurrentChannel(currentChannelChanged.getCurrentChannelViewModel().getCurrentlyWatchedChannel().getId());
+  }
 }

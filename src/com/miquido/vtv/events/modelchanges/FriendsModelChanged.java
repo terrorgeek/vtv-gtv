@@ -10,7 +10,7 @@ import lombok.Getter;
  * Time: 02:50
  * To change this template use File | Settings | File Templates.
  */
-public abstract class FriendsModelChanged {
+public class FriendsModelChanged {
     @Getter private final FriendsViewModel friendsViewModel;
 
     public FriendsModelChanged(FriendsViewModel friendsViewModel) {

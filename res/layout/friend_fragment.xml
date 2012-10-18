@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#88000000"
-              android:paddingBottom="10dp"
-        >
+              style="@style/BasicFragment">
 
     <TextView android:id="@+id/friendsHeader"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="#88000000"
-              android:text="Friends"
+              android:text="@string/friends_header"
               android:textSize="18sp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
-              android:gravity="center_horizontal"
-            />
+              android:gravity="center_horizontal"/>
 
     <ListView android:id="@id/android:list"
               android:layout_width="match_parent"
@@ -26,13 +21,16 @@
               android:drawSelectorOnTop="false"
               android:headerDividersEnabled="true"
               android:footerDividersEnabled="true"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
-            />
+              android:paddingLeft="0dp"
+              android:paddingRight="0dp"/>
 
     <TextView android:id="@id/android:empty"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#00000000"
-              android:text="No data"/>
+              android:textColor="#CC0000"
+              android:textSize="14sp"
+              android:gravity="center_horizontal"
+              android:paddingTop="20dp"
+              android:text="@string/friends_loading"/>
 </LinearLayout>

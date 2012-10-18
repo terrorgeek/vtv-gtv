@@ -1,17 +1,13 @@
 package com.miquido.vtv.controllers.tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import com.google.inject.Inject;
 import com.miquido.vtv.domainservices.FriendsService;
-import com.miquido.vtv.events.modelchanges.FriendsLoadingFinished;
-import com.miquido.vtv.events.modelchanges.FriendsLoadingStarted;
-import com.miquido.vtv.events.modelchanges.SessionModelChanged;
-import com.miquido.vtv.view.fragment.FriendsFragment;
+import com.miquido.vtv.events.commands.FriendsLoadedCommand;
+import com.miquido.vtv.events.modelchanges.FriendsModelChanged;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import roboguice.event.EventManager;
-import roboguice.util.RoboAsyncTask;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +16,7 @@ import roboguice.util.RoboAsyncTask;
  * Time: 16:11
  * To change this template use File | Settings | File Templates.
  */
-public class LoadFriendsTask extends RoboAsyncTask<Void> {
+public class LoadFriendsTask extends SimpleRoboAsyncTask {
     private static final Logger logger = LoggerFactory.getLogger(LoadFriendsTask.class);
 
     @Inject
@@ -29,42 +25,43 @@ public class LoadFriendsTask extends RoboAsyncTask<Void> {
     @Inject
     private EventManager eventManager;
 
+    @Inject
     public LoadFriendsTask(Context context) {
         super(context);
-        logger.debug("LoadFriendsTask constructor.");
+        logger.debug("LoadFriendsTask constructor. context:"+context);
     }
 
     @Override
-    protected void onPreExecute() throws Exception {
+    protected void onPreExecute() {
         try {
             super.onPreExecute();
             logger.debug("onPreExecute: friendService: {}", friendsService);
             logger.debug("onPreExecute: Event Manager: " + eventManager);
             friendsService.setFriendsLoading(true);
             // TODO
-            eventManager.fire(new FriendsLoadingStarted(friendsService));
-            logger.debug("onPreExecute: SessionModelChanged Event fired");
+            eventManager.fire(new FriendsModelChanged(friendsService));
+            logger.debug("onPreExecute: FriendsModelChanged Event fired");
         } catch (Exception e) {
             logger.error("po ustawieniu stanu: wyjatek: "+e.getMessage());
-            throw e;
         }
     }
 
 
     @Override
-    public Void call() throws Exception {
-        logger.debug("call: Start loading friends");
+    public void doInBackground() throws Exception {
+        logger.debug("doInBackground: Start loading friends");
         friendsService.loadFriends();
-        logger.debug("call: friends loaded or not");
-        return null;
+        logger.debug("doInBackground: friends loaded or not");
     }
 
     @Override
-    protected void onFinally() throws RuntimeException {
-        super.onFinally();    //To change body of overridden methods use File | Settings | File Templates.
+    protected void onFinal() throws RuntimeException {
+        super.onFinal();
         logger.debug("onFinally: fire event");
-        eventManager.fire(new FriendsLoadingFinished(friendsService));
-        logger.debug("onFinally: FriendsLoadingFinished Event fired");
+        eventManager.fire(new FriendsModelChanged(friendsService));
+        logger.debug("onFinally: FriendsModelChanged Event fired");
+
+        eventManager.fire(new FriendsLoadedCommand());
     }
 
 

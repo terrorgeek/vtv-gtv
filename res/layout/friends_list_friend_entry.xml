@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/BasicViewFilled"
+              android:orientation="vertical">
+
+    <LinearLayout style="@style/BasicViewFilledHorizontally"
+                  android:paddingTop="10dip"
+                  android:paddingBottom="10dip">
+
+        <ImageView android:id="@+id/friendAvatar"
+                   style="@style/BasicViewWrapped"
+                   android:layout_width="50dip"
+                   android:layout_height="50dip"
+                   android:src="@drawable/friends_sample_photo1"/>
+
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:orientation="vertical">
+            <TextView android:id="@+id/friendNameListField"
+                      style="@style/FriendsRequestTextPart1"/>
+            <RelativeLayout style="@style/BasicViewFilledHorizontally">
+                <ImageView android:id="@+id/channelLogoFriendsListField"
+                           android:layout_width="30dip"
+                           android:layout_height="30dip"
+                           android:layout_marginLeft="10dip"/>
+                <TextView android:id="@+id/channelCallSignFriendsListField"
+                          style="@style/FriendsRequestTextPart2"
+                          android:text="Accepted your friends request"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <ImageView style="@style/ListDivider"
+               android:src="@drawable/friends_list_divider"/>
+</LinearLayout>

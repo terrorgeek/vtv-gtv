@@ -2,7 +2,7 @@ package com.miquido.vtv.codsservices.internal.jsontransformers;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
-import com.miquido.vtv.bo.Profile;
+import com.miquido.vtv.bo.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,5 +15,9 @@ public class JsonTransformersModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(new TypeLiteral<JsonReader<Profile>>() {}).toInstance(new ProfileJsonReader());
+        bind(new TypeLiteral<JsonReader<Channel>>() {}).toInstance(new ChannelJsonReader());
+        bind(new TypeLiteral<JsonReader<Notification>>() {}).toInstance(new NotificationJsonReader());
+        bind(new TypeLiteral<JsonReader<Program>>(){}).toInstance(new ProgramJsonReader());
+        bind(new TypeLiteral<JsonReader<Actor>>(){}).toInstance(new ActorJsonReader());
     }
 }

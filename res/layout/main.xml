@@ -1,35 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/BasicViewFilled"
+              android:orientation="vertical">
 
-    <!--<TextView-->
-        <!--android:layout_width="fill_parent"-->
+
+    <RelativeLayout style="@style/BasicViewFilledHorizontally"
+                    android:layout_weight="1">
+
+        <!--<fragment android:id="@+id/currentChannelInfoFragment"-->
+        <!--android:name="com.miquido.vtv.view.fragment.CurrentChannelInfoFragment"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:text="Hello World, SampleActivity"-->
-        <!--/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_margin="0dp"/>-->
 
-    <fragment android:id="@+id/buttonsFragment"
-              android:name="com.miquido.vtv.view.fragment.ButtonsFragment"
-              android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              android:layout_margin="0dp"
-              />
-    <!--<fragment android:id="@+id/notificationsFragment"-->
-              <!--android:name="com.miquido.vtv.view.fragment.NotificationsFragment"-->
-              <!--android:layout_height="wrap_content"-->
-              <!--android:layout_width="wrap_content"-->
-              <!--android:layout_below="@id/buttonsFragment"-->
-            <!--/>-->
+        <!--<fragment android:id="@+id/notificationsFragment"-->
+        <!--android:name="com.miquido.vtv.view.fragment.NotificationsFragment"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="50dip"/>-->
 
-    <fragment android:id="@+id/friendsFragment"
-        android:name="com.miquido.vtv.view.fragment.FriendsFragment"
-        android:layout_height="fill_parent"
-        android:layout_width="200dp"
-        android:layout_alignParentRight="true"
-    />
+        <!--<fragment android:id="@+id/channelsFragment"-->
+        <!--android:name="com.miquido.vtv.view.fragment.ChannelsFragment"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_marginLeft="300dp"-->
+        <!--android:layout_marginTop="40dp"/>-->
 
-</RelativeLayout>
+        <fragment android:id="@+id/channelsFragment"
+                  android:name="com.miquido.vtv.view.fragment.ChannelsFragment"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"/>
+      <fragment android:id="@+id/scheduleFragment"
+                android:name="com.miquido.vtv.view.fragment.ScheduleFragment"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"/>
+        <fragment android:id="@+id/friendsFragment"
+                  android:name="com.miquido.vtv.view.fragment.FriendsFragment"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"/>
+        <fragment android:id="@+id/programInfoFragment"
+                  android:name="com.miquido.vtv.view.fragment.ProgramInfoFragment"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"/>
+        <fragment android:id="@+id/dashboardFragment"
+                  android:name="com.miquido.vtv.view.fragment.DashboardFragment"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"/>
+
+    </RelativeLayout>
+
+    <LinearLayout style="@style/BasicViewFilledHorizontally"
+                  android:layout_weight="0">
+
+        <fragment android:id="@+id/buttonsFragment"
+                  android:name="com.miquido.vtv.view.fragment.ButtonsFragment"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
 

@@ -13,5 +13,5 @@ import lombok.Data;
 public class Session {
     private String id;
     private String userName;
-    private String userId;
+    private Id userId;
 }

@@ -1,5 +1,6 @@
 package com.miquido.vtv.viewmodel;
 
+import com.miquido.vtv.bo.Friendship;
 import com.miquido.vtv.bo.Profile;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface FriendsViewModel {
 
-    List<Profile> getFriends();
+    List<Friendship> getFriends();
     boolean areFriendsLoaded();
     boolean areFriendsLoading();
     String getFriendLoadingError();

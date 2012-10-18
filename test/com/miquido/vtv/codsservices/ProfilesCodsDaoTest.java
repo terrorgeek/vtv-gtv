@@ -2,8 +2,12 @@ package com.miquido.vtv.codsservices;
 
 import com.google.inject.Inject;
 import com.miquido.test.robolectric.RobolectricInjectionTestRunner;
+import com.miquido.vtv.bo.Id;
+import com.miquido.vtv.bo.Notification;
 import com.miquido.vtv.bo.Profile;
-import com.miquido.vtv.codsservices.dataobjects.PageList;
+import com.miquido.vtv.codsservices.dataobjects.Subcollection;
+import com.miquido.vtv.codsservices.dataobjects.PageParams;
+import com.miquido.vtv.codsservices.internal.impl.ProfilesCodsDaoImpl;
 import com.xtremelabs.robolectric.Robolectric;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,12 +32,12 @@ public class ProfilesCodsDaoTest {
     private static final Logger logger = LoggerFactory.getLogger(ProfilesCodsDaoTest.class);
 
     @Inject
-    ProfilesCodsDao profilesCodsDao;
+    ProfilesCodsDaoImpl profilesCodsDao;
     @Inject
     UsersCodsDao usersCodsDao;
 
     static String sessionId = null;
-    static String userProfileId = null;
+    static Id userProfileId = null;
 
     @Before
     public void setUp() {
@@ -53,115 +56,136 @@ public class ProfilesCodsDaoTest {
     public void testGetFriends() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriends");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriends(sessionId, userProfileId);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId);
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
     }
 
     @Test
     public void testGetFriendsWithNumberOfEntries() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriendsWithNumberOfEntries");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriends(sessionId, userProfileId, 10);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId, PageParams.createForNOE(10));
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
-        assertEquals(10, profilePageList.getResultCount());
-        assertEquals(10, profilePageList.getNextOffset());
-        assertEquals(10, profilePageList.getEntries().size());
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
+        if (profileSubcollection.getTotalCount()>=10) {
+            assertEquals(10, profileSubcollection.getResultCount());
+            assertEquals(10, profileSubcollection.getNextOffset());
+            assertEquals(10, profileSubcollection.getEntries().size());
+        } else {
+            logger.warn("There is to few profiles. Test is not reliable!!!!!");
+        }
     }
 
     @Test
     public void testGetFriendsByPageNum() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriendsByPageNum");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriendsByPageNum(sessionId, userProfileId, 5, 2);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId, PageParams.createForPageNum(5, 2));
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
-        assertEquals(5, profilePageList.getResultCount());
-        assertEquals(10, profilePageList.getNextOffset());
-        assertEquals(5, profilePageList.getEntries().size());
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
+        if (profileSubcollection.getTotalCount()>=10) {
+            assertEquals(5, profileSubcollection.getResultCount());
+            assertEquals(10, profileSubcollection.getNextOffset());
+            assertEquals(5, profileSubcollection.getEntries().size());
+        } else {
+            logger.warn("There is to few profiles. Test is not reliable!!!!!");
+        }
     }
 
     @Test
     public void testGetFriendsByPageNum2() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriendsByPageNum2");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriendsByPageNum(sessionId, userProfileId, 20, 3);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId, PageParams.createForPageNum(20, 3));
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
-        assertEquals(profilePageList.getTotalCount()-40, profilePageList.getResultCount());
-        assertEquals(profilePageList.getTotalCount(), profilePageList.getNextOffset());
-        assertEquals(profilePageList.getResultCount(), profilePageList.getEntries().size());
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
+        if (profileSubcollection.getTotalCount()>40) {
+            assertEquals(profileSubcollection.getTotalCount()-40, profileSubcollection.getResultCount());
+            assertEquals(profileSubcollection.getTotalCount(), profileSubcollection.getNextOffset());
+            assertEquals(profileSubcollection.getResultCount(), profileSubcollection.getEntries().size());
+        } else {
+            logger.warn("There is to few profiles. Test is not reliable!!!!!");
+        }
     }
 
     @Test
     public void testGetFriendsByOffset() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriendsByOffset");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriendsByOffset(sessionId, userProfileId, 5, 17);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId, PageParams.createForOffset(5, 17));
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
-        assertEquals(5, profilePageList.getResultCount());
-        assertEquals(22, profilePageList.getNextOffset());
-        assertEquals(5, profilePageList.getEntries().size());
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
+        if (profileSubcollection.getTotalCount()>=22) {
+            assertEquals(5, profileSubcollection.getResultCount());
+            assertEquals(22, profileSubcollection.getNextOffset());
+            assertEquals(5, profileSubcollection.getEntries().size());
+        } else {
+            logger.warn("There is to few profiles. Test is not reliable!!!!!");
+        }
     }
 
     @Test
     public void testGetFriendsByOffset2() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetFriendsByOffset2");
 
-        PageList<Profile> profilePageList = profilesCodsDao.getFriendsByOffset(sessionId, userProfileId, 100, 50);
+        Subcollection<Profile> profileSubcollection = profilesCodsDao.getFriends(sessionId, userProfileId, PageParams.createForOffset(100, 50));
 
-        assertNotNull(profilePageList);
-        logger.debug("Friends: " + profilePageList);
-        assertEquals(profilePageList.getTotalCount()-50, profilePageList.getResultCount());
-        assertEquals(profilePageList.getTotalCount(), profilePageList.getNextOffset());
-        assertEquals(profilePageList.getResultCount(), profilePageList.getEntries().size());
-    }
-
-    @Test
-    public void testGetAllFriends_SmallPage() throws Exception {
-        logger.debug("ProfilesCodsDaoTest.testGetAllFriends_SmallPage");
-        profilesCodsDao.setPageSize(10);
-        // What is the total number of friends
-        PageList<Profile> profilePageList = profilesCodsDao.getFriends(sessionId, userProfileId, 1);
-        int total = profilePageList.getTotalCount();
-
-        // Test
-        List<Profile> allFriends = profilesCodsDao.getAllFriends(sessionId, userProfileId);
-        assertNotNull(allFriends);
-        assertEquals(total, allFriends.size());
-        logger.debug(profileListToString(allFriends));
-    }
-
-    @Test
-    public void testGetAllFriends_BigPage() throws Exception {
-        logger.debug("ProfilesCodsDaoTest.testGetAllFriends_BigPage");
-        profilesCodsDao.setPageSize(100);
-        // What is the total number of friends
-        PageList<Profile> profilePageList = profilesCodsDao.getFriends(sessionId, userProfileId, 1);
-        int total = profilePageList.getTotalCount();
-
-        // Test
-        List<Profile> allFriends = profilesCodsDao.getAllFriends(sessionId, userProfileId);
-        assertNotNull(allFriends);
-        assertEquals(total, allFriends.size());
-        logger.debug(profileListToString(allFriends));
-    }
-
-    private static String profileListToString(List<Profile> profileList) {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("Profiles List:");
-        for (Profile profile: profileList) {
-            sb.append("\n     ").append(profile.toString());
+        assertNotNull(profileSubcollection);
+        logger.debug("Friends: " + profileSubcollection);
+        if (profileSubcollection.getTotalCount()>50) {
+            assertEquals(profileSubcollection.getTotalCount()-50, profileSubcollection.getResultCount());
+            assertEquals(profileSubcollection.getTotalCount(), profileSubcollection.getNextOffset());
+            assertEquals(profileSubcollection.getResultCount(), profileSubcollection.getEntries().size());
+        } else {
+            logger.warn("There is to few profiles. Test is not reliable!!!!!");
         }
-        sb.append("\n----------------");
-        return sb.toString();
     }
+
+    @Test
+    public void testUpdate() {
+        logger.debug("ProfilesCodsDaoTest.testUpdate");
+        Profile profileData = new Profile();
+        Profile resultProfile;
+        Id codsCurrentChannelId;
+
+        // FIRST UPDATE
+        final String bbcAmericaId = "ff563048-dbcc-11e1-83cd-c263aa2dded5";
+        profileData.setCurrentChannelId(Id.valueOf(bbcAmericaId));   // BBC America
+        resultProfile = profilesCodsDao.update(sessionId, userProfileId, profileData);
+        logger.debug("Result profile 1: " + resultProfile.toString());
+        assertEquals(userProfileId, resultProfile.getId());
+        assertEquals(bbcAmericaId, resultProfile.getCurrentChannelId().toString());
+
+        codsCurrentChannelId = usersCodsDao.getCurrentUserProfile(sessionId).getCurrentChannelId();
+        assertEquals(bbcAmericaId, codsCurrentChannelId.toString());
+
+        // SECOND UPDATE
+        final String ngWildId = "ff563a98-dbcc-11e1-83cd-c263aa2dded5";
+        profileData.setCurrentChannelId(Id.valueOf(ngWildId));   // National Geografic Wild
+        resultProfile = profilesCodsDao.update(sessionId, userProfileId, profileData);
+        logger.debug("Result profile 2: " + resultProfile.toString());
+        assertEquals(userProfileId, resultProfile.getId());
+        assertEquals(ngWildId, resultProfile.getCurrentChannelId().toString());
+
+        codsCurrentChannelId = usersCodsDao.getCurrentUserProfile(sessionId).getCurrentChannelId();
+        assertEquals(ngWildId, codsCurrentChannelId.toString());
+    }
+
+    @Test
+    public void testGetNotifications() throws Exception {
+        logger.debug("ProfilesCodsDaoTest.testGetNotifications");
+
+        Subcollection<Notification> notificationSubcollection = profilesCodsDao.getProfileNotifications(sessionId, userProfileId);
+
+        assertNotNull(notificationSubcollection);
+        logger.debug("Notifications: " + notificationSubcollection);
+    }
+
 
 }

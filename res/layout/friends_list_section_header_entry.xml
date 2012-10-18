@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="20dp"
+              android:orientation="horizontal"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:background="#88444444"
+        >
+
+    <TextView android:id="@+id/sectionNameListField"
+              android:layout_width="fill_parent"
+              android:layout_height="20dp"
+              android:paddingLeft="0dp"
+              android:textSize="10dp"
+              android:gravity="center"
+              android:textStyle="italic"
+            />
+
+</LinearLayout>

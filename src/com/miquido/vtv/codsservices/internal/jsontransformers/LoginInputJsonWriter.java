@@ -33,4 +33,8 @@ public class LoginInputJsonWriter implements JsonWriter<LoginInput> {
         }
     }
 
+    @Override
+    public JSONObject createJsonFromObject(LoginInput object, LoginInput dataToUpdateIndicator) {
+        return createJsonFromObject(object);
+    }
 }

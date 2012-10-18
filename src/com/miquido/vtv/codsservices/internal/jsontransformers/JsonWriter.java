@@ -13,4 +13,6 @@ public interface JsonWriter<Type> {
 
     JSONObject createJsonFromObject(Type object);
 
+    JSONObject createJsonFromObject(Type object, Type dataToUpdateIndicator);
+
 }

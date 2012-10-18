@@ -15,11 +15,54 @@ import org.slf4j.LoggerFactory;
  */
 @Singleton
 public class PanelsStateRepository {
-    private static final Logger logger = LoggerFactory.getLogger(PanelsStateRepository.class);
+  private static final Logger logger = LoggerFactory.getLogger(PanelsStateRepository.class);
 
-    @Getter @Setter private boolean friendsPanelOn = false;
+  @Getter
+  @Setter
+  private boolean applicationVisible = false;
 
-    public void setAllPanelsOff() {
-        friendsPanelOn = false;
-    }
+  @Getter
+  @Setter
+  private boolean friendsPanelOn = false;
+  @Getter
+  @Setter
+  private boolean channelPanelOn = false;
+  @Getter
+  @Setter
+  private boolean notificationsPanelOn = false;
+  @Getter
+  @Setter
+  private boolean programInfoPanelOn = false;
+  @Getter
+  @Setter
+  private boolean dashboardPanelOn = false;
+  @Getter
+  @Setter
+  private boolean schedulePanelOn = false;
+
+  @Getter
+  @Setter
+  private boolean tabBarOn = false;
+
+  public void setAllPanelsOff() {
+    friendsPanelOn = false;
+    channelPanelOn = false;
+    notificationsPanelOn = false;
+    programInfoPanelOn = false;
+    dashboardPanelOn = false;
+    schedulePanelOn = false;
+  }
+
+  public void setAllPanelsOn() {
+    friendsPanelOn = true;
+    channelPanelOn = true;
+    notificationsPanelOn = true;
+    programInfoPanelOn = true;
+    dashboardPanelOn = true;
+    schedulePanelOn = true;
+  }
+
+  public void toggleApplicationVisibility() {
+    applicationVisible = !applicationVisible;
+  }
 }

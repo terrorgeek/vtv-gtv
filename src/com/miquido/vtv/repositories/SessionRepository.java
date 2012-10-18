@@ -19,10 +19,13 @@ import org.slf4j.LoggerFactory;
 public class SessionRepository {
     private static final Logger logger = LoggerFactory.getLogger(SessionRepository.class);
 
-    @Getter @Setter private boolean isLoggingIn = false;
+    public enum SessionState {
+        LoggedOut, LoggingIn, LoggedIn, LoggingInError, Initializing, Initialized;
+    }
+    @Getter @Setter private SessionState sessionState = SessionState.LoggedOut;
     @Getter @Setter String loggingInErrorMessage;
     @Getter private Session session = null;
-    @Getter private Profile currentUserProfile = null;
+    @Getter @Setter private Profile currentUserProfile = null;
 
     public void storeSessionData(Session session, Profile currentUserProfile) {
         this.session = session;
@@ -32,7 +35,8 @@ public class SessionRepository {
     public void clearSessionData() {
         session = null;
         currentUserProfile = null;
-        isLoggingIn = false;
+        loggingInErrorMessage = null;
+        sessionState = SessionState.LoggedOut;
     }
 
 

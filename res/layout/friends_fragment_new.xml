@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/BasicFragment"
+              android:baselineAligned="false">
+
+    <LinearLayout style="@style/BasicViewWrapped"
+                  android:layout_width="200dip"
+                  android:layout_marginRight="40dip"
+                  android:orientation="vertical">
+
+        <!-- Category header -->
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:orientation="vertical">
+
+            <TextView style="@style/HeaderText"
+                      android:text="@string/friends_requests"/>
+
+            <ImageView style="@style/BasicViewFilledHorizontally"
+                       android:src="@drawable/header_line"
+                       android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/BasicViewFilled"
+                      android:orientation="vertical">
+
+            <LinearLayout style="@style/BasicViewFilledHorizontally"
+                          android:paddingTop="10dip"
+                          android:paddingBottom="10dip">
+
+                <ImageView style="@style/BasicViewWrapped"
+                           android:src="@drawable/friends_sample_photo1"/>
+
+                <LinearLayout style="@style/BasicViewFilledHorizontally"
+                              android:orientation="vertical">
+                    <TextView android:id="@+id/name"
+                              style="@style/FriendsRequestTextPart1"
+                              android:text="Weronika Węgrowska"/>
+
+                    <TextView android:id="@+id/name"
+                              style="@style/FriendsRequestTextPart2"
+                              android:text="Accepted your friends request"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <ImageView style="@style/ListDivider"
+                       android:src="@drawable/friends_list_divider"/>
+
+            <LinearLayout style="@style/BasicViewFilledHorizontally"
+                          android:paddingTop="10dip"
+                          android:paddingBottom="10dip">
+
+                <ImageView style="@style/BasicViewWrapped"
+                           android:layout_width="50dip"
+                           android:layout_height="50dip"
+                           android:src="@drawable/no_image"/>
+
+                <LinearLayout style="@style/BasicViewFilledHorizontally"
+                              android:orientation="vertical">
+                    <TextView android:id="@+id/name"
+                              style="@style/FriendsRequestTextPart1"
+                              android:text="Agnieszka Sala"/>
+                    <LinearLayout style="@style/BasicViewFilledHorizontally">
+                        <TextView android:id="@+id/name"
+                                  style="@style/FriendsRequestTextPart2"
+                                  android:layout_width="0dip"
+                                  android:layout_weight="1"
+                                  android:text="wants to be your friend"/>
+                        <ImageView style="@style/FriendsButton"
+                                   android:src="@drawable/friends_button_accept"/>
+                        <ImageView style="@style/FriendsButton"
+                                   android:src="@drawable/friends_button_reject"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView style="@style/ListDivider"
+                       android:src="@drawable/friends_list_divider"/>
+
+            <LinearLayout style="@style/BasicViewFilledHorizontally"
+                          android:paddingTop="10dip"
+                          android:paddingBottom="10dip">
+
+                <ImageView style="@style/BasicViewWrapped"
+                           android:src="@drawable/friends_sample_photo2"/>
+
+                <LinearLayout style="@style/BasicViewFilledHorizontally"
+                              android:orientation="vertical">
+                    <TextView android:id="@+id/name"
+                              style="@style/FriendsRequestTextPart1"
+                              android:text="Jan Omanek"/>
+
+                    <LinearLayout style="@style/BasicViewFilledHorizontally">
+                        <TextView android:id="@+id/name"
+                                  style="@style/FriendsRequestTextPart2"
+                                  android:layout_width="0dip"
+                                  android:layout_weight="1"
+                                  android:text="wants to be your friend"/>
+                        <ImageView style="@style/FriendsButton"
+                                   android:src="@drawable/friends_button_accept"/>
+                        <ImageView style="@style/FriendsButton"
+                                   android:src="@drawable/friends_button_reject"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/BasicViewWrapped"
+                  android:layout_width="0dip"
+                  android:layout_weight="1"
+                  android:layout_marginRight="10dip"
+                  android:orientation="vertical">
+
+        <!-- Category header -->
+        <LinearLayout style="@style/BasicViewFilledHorizontally"
+                      android:orientation="vertical">
+
+            <TextView style="@style/HeaderText"
+                      android:text="@string/your_friends"/>
+
+            <ImageView style="@style/BasicViewFilledHorizontally"
+                       android:src="@drawable/header_line"
+                       android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+        <GridView android:id="@id/android:list"
+                  style="@style/BasicViewWrapped"
+                  android:numColumns="3"
+                  android:columnWidth="200dip"
+                  android:horizontalSpacing="10dip">
+
+        </GridView>
+
+    </LinearLayout>
+
+</LinearLayout>

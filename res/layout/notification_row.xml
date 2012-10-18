@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+        >
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_height="20dp"
+                  android:layout_width="fill_parent"
+            >
+        <ImageView android:id="@+id/friendAvatar"
+                   android:layout_width="20dp"
+                   android:layout_height="20dp"
+                   android:maxWidth="20dp"
+                   android:maxHeight="20dp"
+                   android:scaleType="centerCrop"
+                />
+        <TextView android:id="@+id/friendNameListField"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="10dp"
+                  android:textSize="10dp"
+                  android:gravity="center_vertical"
+                />
+    </LinearLayout>
+    <TextView android:id="@+id/notificationText"
+                      android:layout_width="wrap_content"
+                      android:layout_height="fill_parent"
+                      android:paddingLeft="10dp"
+                      android:textSize="10dp"
+                    />
+
+    <Button
+            android:id="@+id/acceptButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/login_button_loggedin"
+            />
+
+</LinearLayout>

@@ -1,14 +1,12 @@
 package com.miquido.vtv.controllers.tasks;
 
 import android.content.Context;
-import android.os.Handler;
 import com.google.inject.Inject;
 import com.miquido.vtv.domainservices.SessionService;
 import com.miquido.vtv.events.modelchanges.SessionModelChanged;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import roboguice.event.EventManager;
-import roboguice.util.RoboAsyncTask;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,9 +25,14 @@ public class LoginTask extends SimpleRoboAsyncTask {
     @Inject
     private EventManager eventManager;
 
+    @Inject
+    TaskProvider<SessionInitializationTask> sessionInitializationTaskTaskProvider;
+
+    @Inject
     public LoginTask(Context context) {
         super(context);
         logger.debug("LoginTask constructor.");
+        logger.debug("contex:"+context);
     }
 
 
@@ -39,7 +42,7 @@ public class LoginTask extends SimpleRoboAsyncTask {
             super.onPreExecute();
             logger.debug("onPreExecute: sessionService: {}", sessionService);
             logger.debug("onPreExecute: Event Manager: " + eventManager);
-            sessionService.setLoggingIn(true);
+            sessionService.setLoggingIn();
             eventManager.fire(new SessionModelChanged(sessionService));
             logger.debug("onPreExecute: SessionModelChanged Event fired");
         } catch (Exception e) {
@@ -60,6 +63,7 @@ public class LoginTask extends SimpleRoboAsyncTask {
         logger.debug("onFinally: fire event");
         eventManager.fire(new SessionModelChanged(sessionService));
         logger.debug("onFinally: SessionModelChanged Event fired");
+        sessionInitializationTaskTaskProvider.get().execute();
     }
 
 }
