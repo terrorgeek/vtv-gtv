@@ -3,9 +3,7 @@ package com.miquido.vtv.controllers;
 import android.content.Context;
 import android.widget.Toast;
 import com.google.inject.Inject;
-import com.miquido.DemoChannels;
 import com.miquido.vtv.bo.Channel;
-import com.miquido.vtv.bo.Id;
 import com.miquido.vtv.bo.Notification;
 import com.miquido.vtv.bo.WatchWithMeNotification;
 import com.miquido.vtv.controllers.tasks.*;
@@ -17,8 +15,6 @@ import org.slf4j.LoggerFactory;
 import roboguice.event.EventManager;
 import roboguice.event.Observes;
 import roboguice.inject.ContextSingleton;
-
-import java.text.ParseException;
 
 
 /**
@@ -60,12 +56,15 @@ public class MainController {
   TaskProvider<CreateCodsNotificationTask> createCodsNotificationTaskProvider;
   @Inject
   TaskProvider<RequestedChannelWatchingTask> requestedChannelWatchingTaskProvider;
+  @Inject
+  TaskProvider<ScheduleUpdatingTask> scheduleUpdatingTaskTaskProvider;
 
   FriendsUpdatingTask friendsUpdatingTask = null;
   RequestedChannelWatchingTask requestedChannelWatchingTask = null;
   NotificationsUpdatingTask notificationsUpdatingTask = null;
   UpdateCodsNotificationTask updateCodsNotificationTask = null;
   CreateCodsNotificationTask createCodsNotificationTask = null;
+  ScheduleUpdatingTask scheduleUpdatingTask = null;
 
   public MainController() {
     logger.debug("constructor");
@@ -87,8 +86,8 @@ public class MainController {
 
   public void onLoginButtonClicked(@Observes LoginButtonClickedCommand loginButtonClickedCommand) {
     logger.debug("onLoginButtonClicked:");
-    if (!sessionService.isLoggedIn() || !sessionService.isSessionInitialized())
-      return; // No action when application is not logged in and initialized
+//    if (!sessionService.isLoggedIn() || !sessionService.isSessionInitialized())
+//      return; // No action when application is not logged in and initialized
 
     logger.debug("changing visibility");
     panelsStateService.toggleApplicationVisibility();
@@ -124,7 +123,7 @@ public class MainController {
       updateCodsChannelTaskProvider.get().execute();
     }
     eventManager.fire(new CurrentChannelChanged(currentChannelService));
-    eventManager.fire(new PanelsStateChanged(panelsStateService));
+//    eventManager.fire(new PanelsStateChanged(panelsStateService));
   }
 
   public void onFriendsButtonToggled(@Observes FriendsButtonToggledCommand friendsButtonToggledCommand) {
@@ -201,5 +200,13 @@ public class MainController {
     logger.debug("onNotificationsLoadedCommand");
     notificationsUpdatingTask = notificationsUpdatingTaskTaskProvider.get();
     notificationsUpdatingTask.execute();
+    requestedChannelWatchingTask = requestedChannelWatchingTaskProvider.get();
+    requestedChannelWatchingTask.execute();
+  }
+
+  public void onScheduleLoadedCommand(@Observes ScheduleLoadedCommand command) {
+    logger.debug("onScheduleLoadedCommand");
+    scheduleUpdatingTask = scheduleUpdatingTaskTaskProvider.get();
+    scheduleUpdatingTask.execute();
   }
 }

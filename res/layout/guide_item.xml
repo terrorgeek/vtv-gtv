@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:vtv="http://schemas.android.com/apk/res/com.miquido.vtv"
+              style="@style/BasicViewWrapped"
+              android:gravity="center_vertical"
+              android:orientation="vertical"
+              android:padding="5dip"
+              android:clickable="true">
+
+    <TextView android:id="@+id/programTitle"
+              style="@style/GuideItemTitle"/>
+
+    <TextView android:id="@+id/programTime"
+              style="@style/GuideItemTime"/>
+
+    <LinearLayout style="@style/BasicViewWrapped">
+        <com.miquido.vtv.components.ButtonWithCounter style="@style/BasicViewFilledHorizontally" vtv:value="11"
+                                                      vtv:type="like" android:focusable="false"/>
+        <com.miquido.vtv.components.ButtonWithCounter style="@style/BasicViewFilledHorizontally" vtv:value="8"
+                                                      vtv:type="dislike" android:focusable="false"/>
+        <com.miquido.vtv.components.ButtonWithCounter style="@style/BasicViewFilledHorizontally" vtv:value="5"
+                                                      vtv:type="friends" android:focusable="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

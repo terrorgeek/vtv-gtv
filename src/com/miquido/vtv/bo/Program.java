@@ -7,6 +7,7 @@ package com.miquido.vtv.bo;
 
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,5 +20,8 @@ public class Program extends Entity {
   private String seasonName;
   private String seasonDescription;
   private List<Actor> actors;
+  private String episodeName;
+  private String seasonNo;
+  private String episodeNo;
 
 }

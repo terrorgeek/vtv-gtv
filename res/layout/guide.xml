@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/BasicViewFilled">
+
+    <ScrollView android:id="@+id/channelsList"
+                style="@style/BasicViewWrapped">
+        <LinearLayout style="@style/BasicViewWrapped"
+                      android:orientation="vertical"
+                      android:layout_marginTop="11dip">
+            <ImageView style="@style/BasicViewWrapped"
+                       android:src="@drawable/guide_programs_list"/>
+            <ImageView style="@style/BasicViewWrapped"
+                       android:src="@drawable/guide_programs_list"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <HorizontalScrollView style="@style/BasicViewFilledHorizontally">
+
+        <RelativeLayout style="@style/BasicViewFilledHorizontally"
+                        android:gravity="left">
+
+            <LinearLayout style="@style/BasicViewWrapped"
+                          android:orientation="vertical"
+                          android:padding="10dip">
+
+                <LinearLayout style="@style/BasicViewFilledHorizontally"
+                              android:gravity="center_vertical"
+                              android:layout_marginBottom="5dip">
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_arrow_left"
+                               android:layout_marginRight="20dip"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="2:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="3:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="4:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="5:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="6:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_hour_divider"/>
+
+                    <TextView style="@style/GuideTime"
+                              android:text="7:00pm"/>
+
+                    <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_arrow_right"/>
+
+                </LinearLayout>
+
+                <com.miquido.vtv.components.ObservableScrollView android:id="@+id/programsList"
+                                                                 style="@style/BasicViewWrapped">
+                    <LinearLayout android:id="@+id/programsContainer"
+                                  style="@style/BasicViewWrapped"
+                                  android:orientation="vertical">
+
+                    </LinearLayout>
+                </com.miquido.vtv.components.ObservableScrollView>
+            </LinearLayout>
+
+            <ImageView style="@style/BasicViewWrapped"
+                       android:src="@drawable/guide_overlay"
+                       android:layout_height="fill_parent"
+                       android:layout_alignParentLeft="true"/>
+
+        </RelativeLayout>
+
+    </HorizontalScrollView>
+</LinearLayout>
+

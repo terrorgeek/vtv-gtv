@@ -88,8 +88,14 @@ public class ProgramInfoFragment extends RoboFragment {
     logger.debug("currentChannel=" + currentChannel);
   }
 
-  public void onCurrentlyWatchedProgramChanged(@Observes CurrentlyWatchedProgramChanged currentlyWatchedProgramChanged) {
-    updateCurrentProgramValues(currentlyWatchedProgramChanged.getProgramsViewModel());
+  public void onCurrentlyWatchedProgramChanged(@Observes final CurrentlyWatchedProgramChanged currentlyWatchedProgramChanged) {
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        updateCurrentProgramValues(currentlyWatchedProgramChanged.getProgramsViewModel());
+      }
+    });
+
   }
 
   private void updateCurrentProgramValues(ProgramsViewModel currentlyWatchedProgramChanged) {
@@ -98,19 +104,24 @@ public class ProgramInfoFragment extends RoboFragment {
       programTitle.setText(currentlyWatchedProgram.getName());
       programDescription.setText(StringUtils.isNotBlank(currentlyWatchedProgram.getDescription()) ? currentlyWatchedProgram.getDescription() : "");
       actorsGridViewAdapter.updateActors(currentlyWatchedProgram.getActors());
-      seasonTitle.setText(currentlyWatchedProgram.getSeasonName());
-      seasonDescription.setText(currentlyWatchedProgram.getSeasonDescription());
-      seasonSubtitle.setText(currentlyWatchedProgram.getSeasonSubtitle());
-      String seasonName = currentlyWatchedProgram.getSeasonName();
-      if (seasonName.contains("Episode 8")) {
-        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode8);
-      } else if (seasonName.contains("Episode 10")) {
-        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode10);
-      } else if (seasonName.contains("Episode 5")) {
-        programInfoSynopsis.setImageResource(R.drawable.gtv_season3episode5);
-      } else if (seasonName.contains("Episode 6")) {
-        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode6);
-      }
+      seasonTitle.setText("Season " + (currentlyWatchedProgram.getSeasonNo() == null ? "" :currentlyWatchedProgram.getSeasonNo()) + ", " +
+          "Episode " + (currentlyWatchedProgram.getEpisodeNo() == null ? "" :currentlyWatchedProgram.getEpisodeNo()));
+      seasonDescription.setText(currentlyWatchedProgram.getDescription());
+      seasonSubtitle.setText(currentlyWatchedProgram.getEpisodeName());
+      String episodeNo = currentlyWatchedProgram.getEpisodeNo();
+//      if (episodeNo == null) {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode8);
+//      } else if (episodeNo.contains("8")) {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode8);
+//      } else if (episodeNo.contains("10")) {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode10);
+//      } else if (episodeNo.contains("5")) {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season3episode5);
+//      } else if (episodeNo.contains("6")) {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode6);
+//      } else {
+//        programInfoSynopsis.setImageResource(R.drawable.gtv_season2episode8);
+//      }
     } else {
       programTitle.setText(getText(R.string.unknown_program));
       programDescription.setText(getText(R.string.details_not_available));

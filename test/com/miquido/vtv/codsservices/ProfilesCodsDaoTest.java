@@ -175,9 +175,46 @@ public class ProfilesCodsDaoTest {
 
         codsCurrentChannelId = usersCodsDao.getCurrentUserProfile(sessionId).getCurrentChannelId();
         assertEquals(ngWildId, codsCurrentChannelId.toString());
+
     }
 
-    @Test
+  @Test
+  public void testUpdateRequestedChannelId() {
+    logger.debug("ProfilesCodsDaoTest.testUpdateRequestedChannelId");
+    Profile profileData = new Profile();
+    Profile resultProfile;
+    Id codsRequestedChannelId;
+
+    // FIRST UPDATE
+    final String bbcAmericaId = "ff563048-dbcc-11e1-83cd-c263aa2dded5";
+    profileData.setRequestedChannelId(Id.valueOf(bbcAmericaId));   // BBC America
+    resultProfile = profilesCodsDao.update(sessionId, userProfileId, profileData);
+    logger.debug("Result profile 1: " + resultProfile.toString());
+    assertEquals(userProfileId, resultProfile.getId());
+    assertEquals(bbcAmericaId, resultProfile.getRequestedChannelId().toString());
+
+    codsRequestedChannelId = usersCodsDao.getCurrentUserProfile(sessionId).getRequestedChannelId();
+    assertEquals(bbcAmericaId, codsRequestedChannelId.toString());
+
+    logger.debug("Second update null");
+    // SECOND UPDATE - NULL
+    final String ngWildId = "ff563a98-dbcc-11e1-83cd-c263aa2dded5";
+    profileData.setRequestedChannelId(null);
+    Profile profileUpdateIndicator = new Profile();
+    profileUpdateIndicator.setRequestedChannelId(Id.valueOf(ngWildId));
+
+    resultProfile = profilesCodsDao.update(sessionId, userProfileId, profileData, profileUpdateIndicator);
+    logger.debug("Result profile 2: " + resultProfile.toString());
+    assertEquals(userProfileId, resultProfile.getId());
+    assertNull(resultProfile.getRequestedChannelId());
+
+    logger.debug("Read after update null");
+    codsRequestedChannelId = usersCodsDao.getCurrentUserProfile(sessionId).getRequestedChannelId();
+    assertNull(codsRequestedChannelId);
+
+  }
+
+  @Test
     public void testGetNotifications() throws Exception {
         logger.debug("ProfilesCodsDaoTest.testGetNotifications");
 

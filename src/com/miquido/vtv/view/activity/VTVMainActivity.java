@@ -44,7 +44,7 @@ public class VTVMainActivity extends RoboFragmentActivity {
   @InjectFragment(R.id.programInfoFragment)
   ProgramInfoFragment programInfoFragment;
   @InjectFragment(R.id.channelsFragment)
-  ChannelsFragment channelsFragment;
+  GuideFragment guideFragment;
   @InjectFragment(R.id.dashboardFragment)
   DashboardFragment dashboardFragment;
   @InjectFragment(R.id  .scheduleFragment)
@@ -81,17 +81,17 @@ public class VTVMainActivity extends RoboFragmentActivity {
     logger.debug("onCreate: fire event initcommand: ");
     eventManager.fire(new InitCommand());
     logger.debug("onCreate: event initcommand fired");
-    engine = Engine.getInstance(this, this);
+//    engine = Engine.getInstance(this, this);
 
 
   }
 
-  @Override
-  protected void onDestroy() {
-    engine.uninit();
-    engine.release();
-    super.onDestroy();
-  }
+//  @Override
+//  protected void onDestroy() {
+//    engine.uninit();
+//    engine.release();
+//    super.onDestroy();
+//  }
 
   @Override
   protected void onResume() {
@@ -123,11 +123,11 @@ public class VTVMainActivity extends RoboFragmentActivity {
     logger.debug("vTV:onStop");
   }
 
-  @Override
-  protected void onRestart() {
-    super.onRestart();
-    logger.debug("vTV: onRestart");
-  }
+//  @Override
+//  protected void onRestart() {
+//    super.onRestart();
+//    logger.debug("vTV: onRestart");
+//  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -140,10 +140,10 @@ public class VTVMainActivity extends RoboFragmentActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.exit:
-        if (Engine.active) {
-          engine.uninit();
-          engine.release();
-        }
+//        if (Engine.active) {
+//          engine.uninit();
+//          engine.release();
+//        }
         finish();
         return true;
       default:
@@ -153,12 +153,12 @@ public class VTVMainActivity extends RoboFragmentActivity {
 
   public void updateScreenHandler() {
     Button callButton = (Button) findViewById(R.id.callButton);
-    if (engine.line == -1) {
-      callButton.setBackgroundResource(R.drawable.phone_red);
-      return;
-    }
+//    if (engine.line == -1) {
+//      callButton.setBackgroundResource(R.drawable.phone_red);
+//      return;
+//    }
     //Log.i(TAG, "updateScreen():status=" + engine.lines[engine.line].status);
-    callButton.setBackgroundResource(engine.lines[engine.line].incall ? R.drawable.phone_red : R.drawable.phone_green);
+//    callButton.setBackgroundResource(engine.lines[engine.line].incall ? R.drawable.phone_red : R.drawable.phone_green);
   }
 
   public void updateScreen() {

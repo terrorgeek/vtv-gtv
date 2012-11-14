@@ -76,6 +76,8 @@ public class SessionInitializationTask extends SimpleRoboAsyncTask {
     loadFriendsTask.execute();
     LoadNotificationsTask loadNotificationsTask = RoboGuice.getInjector(context).getInstance(LoadNotificationsTask.class);
     loadNotificationsTask.execute();
+    LoadScheduleTask loadScheduleTask = RoboGuice.getInjector(context).getInstance(LoadScheduleTask.class);
+    loadScheduleTask.execute();
   }
 
 }

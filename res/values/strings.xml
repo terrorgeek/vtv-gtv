@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">vTV</string>
+    <string name="app_name">KoVue</string>
     <string name="calendar">Calendar</string>
     <string name="cast">Cast</string>
     <string name="dashboard">Dashboard</string>
@@ -28,4 +28,122 @@
     <string name="guide">Guide</string>
     <string name="unknown_program">Unknown program</string>
     <string name="details_not_available">About the show unavailable.</string>
+    <string name="youAreWatching">You\'re watching</string>
+    <string name="currently_watching_title">Unknown</string>
+    <string name="currently_watching_description">Unknown description.</string>
+    <string name="friendsWatching">Friends Watching</string>
+    <string name="friends_watching_title">Desperate Housewives</string>
+    <string name="friend_name_popup">Joanna Borkowska:</string>
+    <string name="friend_watching_description_popup">Secrets and truths unfold through the lives of female friends in
+        one suburban neighborhood, after the mysterious suicide of a neighbor.
+    </string>
+
+    <!-- Guide mock data -->
+    <string name="guide_program_title_0_0">Test 1</string>
+    <string name="guide_program_time_0_0">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_0_0">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 1</string>
+    <string name="guide_program_thumbnail_0_0">friends_sample_photo1</string>
+    <string name="guide_program_title_0_1">Test 2</string>
+    <string name="guide_program_time_0_1">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_0_1">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 2</string>
+    <string name="guide_program_thumbnail_0_1">friends_sample_photo1</string>
+    <string name="guide_program_title_0_2">Test 3</string>
+    <string name="guide_program_time_0_2">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_0_2">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 3</string>
+    <string name="guide_program_thumbnail_0_2">friends_sample_photo1</string>
+    <string name="guide_program_title_0_3">Test 3</string>
+    <string name="guide_program_time_0_3">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_0_3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 3</string>
+    <string name="guide_program_thumbnail_0_3">friends_sample_photo1</string>
+    <string name="guide_program_title_0_4">Test 4</string>
+    <string name="guide_program_time_0_4">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_0_4">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 4</string>
+    <string name="guide_program_thumbnail_0_4">friends_sample_photo1</string>
+
+    <string name="guide_program_title_1_0">Test 5</string>
+    <string name="guide_program_time_1_0">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_1_0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_1_0">friends_sample_photo1</string>
+    <string name="guide_program_title_1_1">NCIS</string>
+    <string name="guide_program_time_1_1">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_1_1">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 6</string>
+    <string name="guide_program_thumbnail_1_1">friends_sample_photo1</string>
+    <string name="guide_program_title_1_2">Test 1</string>
+    <string name="guide_program_time_1_2">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_1_2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_1_2">friends_sample_photo1</string>
+    <string name="guide_program_title_1_3">Test 2</string>
+    <string name="guide_program_time_1_3">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_1_3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_1_3">friends_sample_photo1</string>
+    <string name="guide_program_title_1_4">Test 3</string>
+    <string name="guide_program_time_1_4">2:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_1_4">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_1_4">friends_sample_photo1</string>
+
+    <string name="guide_program_title_2_0">Test 9</string>
+    <string name="guide_program_time_2_0">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_2_0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_2_0">friends_sample_photo1</string>
+    <string name="guide_program_title_2_1">Test 5</string>
+    <string name="guide_program_time_2_1">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_2_1">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_2_1">friends_sample_photo1</string>
+    <string name="guide_program_title_2_2">Test 6</string>
+    <string name="guide_program_time_2_2">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_2_2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_2_2">friends_sample_photo1</string>
+    <string name="guide_program_title_2_3">Test 7</string>
+    <string name="guide_program_time_2_3">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_2_3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_2_3">friends_sample_photo1</string>
+    <string name="guide_program_title_2_4">Test 8</string>
+    <string name="guide_program_time_2_4">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_2_4">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_2_4">friends_sample_photo1</string>
+
+    <string name="guide_program_title_3_0">Test 14</string>
+    <string name="guide_program_time_3_0">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_3_0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_3_0">friends_sample_photo1</string>
+    <string name="guide_program_title_3_1">Test 10</string>
+    <string name="guide_program_time_3_1">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_3_1">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_3_1">friends_sample_photo1</string>
+    <string name="guide_program_title_3_2">Test 11</string>
+    <string name="guide_program_time_3_2">3:30 AM - 3:30 AM</string>
+    <string name="guide_program_desc_3_2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_3_2">friends_sample_photo1</string>
+    <string name="guide_program_title_3_3">Test 12</string>
+    <string name="guide_program_time_3_3">1:00 AM - 3:30 AM</string>
+    <string name="guide_program_desc_3_3">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_3_3">friends_sample_photo1</string>
+    <string name="guide_program_title_3_4">Test 13</string>
+    <string name="guide_program_time_3_4">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_3_4">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_3_4">friends_sample_photo1</string>
+
+    <string name="guide_program_title_4_0">Test 19</string>
+    <string name="guide_program_time_4_0">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_4_0">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_4_0">friends_sample_photo1</string>
+    <string name="guide_program_title_4_1">Test 15</string>
+    <string name="guide_program_time_4_1">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_4_1">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_4_1">friends_sample_photo1</string>
+    <string name="guide_program_title_4_2">Test 16</string>
+    <string name="guide_program_time_4_2">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_4_2">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_4_2">friends_sample_photo1</string>
+    <string name="guide_program_title_4_3">Test 17</string>
+    <string name="guide_program_time_4_3">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_4_3">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_4_3">friends_sample_photo1</string>
+    <string name="guide_program_title_4_4">Test 18</string>
+    <string name="guide_program_time_4_4">1:00 AM - 2:00 AM</string>
+    <string name="guide_program_desc_4_4">There are many Lorem Ipsum variations available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. 5</string>
+    <string name="guide_program_thumbnail_4_4">friends_sample_photo1</string>
+    <string name="upcomingShow">Upcoming show</string>
+
 </resources>
+

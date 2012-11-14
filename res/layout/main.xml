@@ -7,33 +7,14 @@
     <RelativeLayout style="@style/BasicViewFilledHorizontally"
                     android:layout_weight="1">
 
-        <!--<fragment android:id="@+id/currentChannelInfoFragment"-->
-        <!--android:name="com.miquido.vtv.view.fragment.CurrentChannelInfoFragment"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_margin="0dp"/>-->
-
-        <!--<fragment android:id="@+id/notificationsFragment"-->
-        <!--android:name="com.miquido.vtv.view.fragment.NotificationsFragment"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_marginTop="50dip"/>-->
-
-        <!--<fragment android:id="@+id/channelsFragment"-->
-        <!--android:name="com.miquido.vtv.view.fragment.ChannelsFragment"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_marginLeft="300dp"-->
-        <!--android:layout_marginTop="40dp"/>-->
-
         <fragment android:id="@+id/channelsFragment"
-                  android:name="com.miquido.vtv.view.fragment.ChannelsFragment"
+                  android:name="com.miquido.vtv.view.fragment.GuideFragment"
                   android:layout_height="fill_parent"
                   android:layout_width="fill_parent"/>
-      <fragment android:id="@+id/scheduleFragment"
-                android:name="com.miquido.vtv.view.fragment.ScheduleFragment"
-                android:layout_height="fill_parent"
-                android:layout_width="fill_parent"/>
+        <fragment android:id="@+id/scheduleFragment"
+                  android:name="com.miquido.vtv.view.fragment.ScheduleFragment"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"/>
         <fragment android:id="@+id/friendsFragment"
                   android:name="com.miquido.vtv.view.fragment.FriendsFragment"
                   android:layout_height="fill_parent"

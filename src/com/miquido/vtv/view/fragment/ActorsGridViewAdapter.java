@@ -85,15 +85,15 @@ public class ActorsGridViewAdapter extends BaseListAdapter<Actor, ActorsGridView
   @Override
   protected void fillViewHolder(ActorRowViewHolder actorRowViewHolder, Actor actor, View view, int i) {
     actorRowViewHolder.actorNameListField.setText(actor.getName());
-    actorRowViewHolder.actorAvatar.setImageResource(actor.getPhotoResourceId());
-    /*URI avatarUri = getImageURI(actor.getPhotoId());
+//    actorRowViewHolder.actorAvatar.setImageResource(actor.getPhotoResourceId());
+    URI avatarUri = getImageURI(actor.getPhotoId());
     if (avatarUri != null) {
       logger.debug(String.format("setAvatarImage i:%d, view:%s,  uri:%s", i, actorRowViewHolder.actorAvatar, avatarUri.toString()));
       uriLazyImageLoader.scheduleForLoad(actorRowViewHolder.actorAvatar, avatarUri);
     } else {
       uriLazyImageLoader.unregisterFromUpdateAfterDownload(actorRowViewHolder.actorAvatar);
       actorRowViewHolder.actorAvatar.setImageResource(R.drawable.no_image);
-    }*/
+    }
   }
 
   @Override

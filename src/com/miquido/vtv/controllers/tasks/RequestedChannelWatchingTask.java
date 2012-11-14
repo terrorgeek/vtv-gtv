@@ -43,7 +43,7 @@ public class RequestedChannelWatchingTask extends SimpleRoboAsyncTask {
 
   @Override
   public void doInBackground() throws Exception {
-    logger.debug("doInBackground: Start background task updating friends");
+    logger.debug("doInBackground: Start background task watching requested channel id");
     SystemClock.sleep(5000);
     while (!isCancelled()) {
       currentChannelService.updateRequestedChannelId();
@@ -61,10 +61,10 @@ public class RequestedChannelWatchingTask extends SimpleRoboAsyncTask {
     Id requestedChannelId = currentChannelService.getRemotelyRequestedChannelChange();
     if (requestedChannelId!=null) {
       currentChannelService.changeChannel(requestedChannelId);
-      if (currentChannelService.codsChannelNeedsChange()) {
+//      if (currentChannelService.codsChannelNeedsChange()) {
         logger.debug("onChannelSelected: Cods currentProfile needs change");
         updateCodsChannelTaskProvider.get().execute();
-      }
+//      }
       eventManager.fire(new CurrentChannelChanged(currentChannelService));
     }
   }

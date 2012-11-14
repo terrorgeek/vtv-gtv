@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected tab -->
+    <item android:drawable="@drawable/guide_item_background_selected" android:state_pressed="true"/>
+
+    <!-- Selected tab -->
+    <item android:drawable="@drawable/guide_item_background_selected" android:state_selected="true"/>
+
+    <!-- Not selected tab -->
+    <item android:drawable="@drawable/guide_item_background"/>
+
+</selector>

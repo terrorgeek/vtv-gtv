@@ -2,26 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/BasicViewFilledHorizontally">
 
-    <Button android:id="@+id/loginButton"
-            style="@style/BasicViewWrapped"
-            android:layout_marginLeft="30dip"
-            android:layout_marginRight="30dip"
-            android:background="@drawable/tab_bar_icon_logo"
-            android:layout_centerVertical="true"/>
+    <RelativeLayout style="@style/BasicViewWrapped"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dip">
+
+        <Button android:id="@+id/loginButton"
+                style="@style/BasicViewWrapped"
+                android:background="@drawable/tab_bar_icon_logo"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15dip"/>
+
+        <TextView android:id="@+id/loginBadge"
+                  style="@style/BasicViewWrapped"
+                  android:background="@drawable/notification_background"
+                  android:gravity="center"
+                  android:layout_toRightOf="@id/loginButton"
+                  android:textStyle="bold"/>
+
+    </RelativeLayout>
 
     <LinearLayout android:id="@+id/tabBar"
                   style="@style/TabBar"
-                  android:paddingLeft="100dip"
-                  android:paddingRight="40dip"
-                  android:visibility="invisible">
+                  android:paddingLeft="80dip"
+                  android:paddingRight="30dip"
+                  android:visibility="visible">
 
         <RadioGroup style="@style/BasicViewFilledHorizontally"
                     android:orientation="horizontal">
+
 
             <RadioButton android:id="@+id/dashboardButton"
                          style="@style/TabBarIcon"
                          android:drawableTop="@drawable/tab_bar_icon_dashboard_selector"
                          android:text="@string/dashboard"/>
+
 
             <RadioButton android:id="@+id/programInfoButton"
                          style="@style/TabBarIcon"
@@ -39,17 +53,32 @@
                          android:clickable="false"
                          android:text="@string/schedule"/>
 
+
             <RadioButton android:id="@+id/notificationsButton"
                          style="@style/TabBarIcon"
                          android:drawableTop="@drawable/tab_bar_icon_notifications_selector"
                          android:clickable="false"
                          android:text="@string/notifications"/>
 
+            <TextView android:id="@+id/notificationsBadge"
+                      style="@style/BasicViewWrapped"
+                      android:background="@drawable/notification_background"
+                      android:gravity="center"
+                      android:layout_gravity="fill"
+                      android:textStyle="bold"/>
+
             <RadioButton android:id="@+id/friendsButton"
                          style="@style/TabBarIcon"
                          android:drawableTop="@drawable/tab_bar_icon_friends_selector"
                          android:clickable="false"
                          android:text="@string/friends"/>
+
+            <TextView android:id="@+id/friendsBadge"
+                      style="@style/BasicViewWrapped"
+                      android:background="@drawable/notification_background"
+                      android:gravity="center"
+                      android:layout_gravity="fill"
+                      android:textStyle="bold"/>
 
             <RadioButton android:id="@+id/socialTrendsButton"
                          style="@style/TabBarIcon"

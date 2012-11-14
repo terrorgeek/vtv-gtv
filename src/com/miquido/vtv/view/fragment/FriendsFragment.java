@@ -83,6 +83,6 @@ public class FriendsFragment extends RoboFragment {
 
   public void onCurrentChannelChanged(@Observes CurrentChannelChanged currentChannelChanged) {
     logger.debug("onCurrentChannelChanged");
-    friendsSectionListAdapter.updateCurrentChannel(currentChannelChanged.getCurrentChannelViewModel().getCurrentlyWatchedChannel().getId());
+//    friendsSectionListAdapter.updateCurrentChannel(currentChannelChanged.getCurrentChannelViewModel().getCurrentlyWatchedChannel().getId());
   }
 }

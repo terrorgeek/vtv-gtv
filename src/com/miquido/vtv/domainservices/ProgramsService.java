@@ -31,8 +31,8 @@ public class ProgramsService implements ProgramsViewModel {
   }
 
   private Program getCurrentProgramForChannel(Id channelId) {
-    return MockData.getProgramForChannel(channelId);
-    //return programsCodsDao.getCurrentProgramForChannel(sessionRepository.getSession().getId(), channelId.toString());
+//    return MockData.getProgramForChannel(channelId);
+    return programsCodsDao.getCurrentProgramForChannel(sessionRepository.getSession().getId(), channelId.toString());
   }
 
   public Program getCurrentlyWatchedProgram() {

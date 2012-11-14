@@ -2,20 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               style="@style/BasicFragment"
-              android:padding="0dip"
+              android:paddingBottom="0dip"
               android:orientation="vertical">
-
-
-    <LinearLayout style="@style/BasicViewFilledHorizontally"
-                  android:gravity="center"
-                  android:background="@drawable/program_info_title_background">
-        <TextView style="@style/HeaderText"
-                  android:id="@+id/program_title"
-                  android:text="@string/unknown_program"
-                  android:gravity="center"
-                  android:textStyle="bold"/>
-    </LinearLayout>
-
 
     <LinearLayout style="@style/BasicViewFilledHorizontally"
                   android:baselineAligned="false">
@@ -27,7 +15,8 @@
             <LinearLayout style="@style/Header">
 
                 <TextView style="@style/HeaderText"
-                          android:text="About the show"/>
+                          android:id="@+id/program_title"
+                          android:text="Program info"/>
 
                 <ImageView style="@style/BasicViewFilledHorizontally"
                            android:src="@drawable/header_line"
@@ -37,24 +26,21 @@
 
             <LinearLayout style="@style/BasicViewFilledHorizontally"
                           android:orientation="vertical"
+                          android:layout_height="80dip"
                           android:layout_marginBottom="27dip">
 
-                <ScrollView style="@style/BasicViewFilledHorizontally"
-                    android:layout_height="53dip">
-
-                    <TextView style="@style/BasicViewFilledHorizontally"
-                              android:textColor="@android:color/white"
-                              android:id="@+id/program_description"
-                              android:text="No description"/>
-                </ScrollView>
-
+                <TextView style="@style/BasicViewFilledHorizontally"
+                          android:layout_height="53dip"
+                          android:textColor="@android:color/white"
+                          android:id="@+id/program_description"
+                          android:text="No description"/>
             </LinearLayout>
 
             <!-- Category header -->
             <LinearLayout style="@style/Header">
 
                 <TextView style="@style/HeaderText"
-                          android:text="Read the synopsis"/>
+                          android:text="Available Episodes"/>
 
                 <ImageView style="@style/BasicViewFilledHorizontally"
                            android:src="@drawable/header_line"
@@ -62,13 +48,13 @@
 
             </LinearLayout>
 
-          <LinearLayout style="@style/BasicViewFilledHorizontally"
-                        android:orientation="vertical">
-              <ImageView style="@style/BasicViewFilledHorizontally"
-                         android:id="@+id/program_info_synopsis"
-                         android:src="@drawable/program_info_synopsis"/>
-          </LinearLayout>
-
+            <ScrollView style="@style/BasicViewFilledHorizontally">
+                <ImageView android:id="@+id/program_info_synopsis"
+                           style="@style/BasicViewFilledHorizontally"
+                           android:src="@drawable/program_info_synopsis"
+                           android:scaleType="centerCrop"
+                           android:paddingTop="30dip"/>
+            </ScrollView>
         </LinearLayout>
 
 
@@ -79,7 +65,8 @@
                           android:layout_marginBottom="20dip">
 
                 <!-- Category header -->
-                <LinearLayout style="@style/Header">
+                <LinearLayout style="@style/Header"
+                              android:layout_height="42dip">
 
                     <TextView style="@style/HeaderText"
                               android:text="@string/similar_shows"/>
@@ -102,7 +89,7 @@
             <!-- Category header -->
             <LinearLayout style="@style/Header">
 
-                <TextView style="@style/HeaderText"    android:id="@+id/season_title"
+                <TextView style="@style/HeaderText" android:id="@+id/season_title"
                           android:text="Season 1, Episode 2"/>
 
                 <ImageView style="@style/BasicViewFilledHorizontally"
@@ -144,11 +131,30 @@
 
             </LinearLayout>
 
-          <GridView android:id="@id/android:list"
-                    style="@style/BasicViewWrapped"
-                    android:numColumns="3"
-                    android:horizontalSpacing="10dip">
-          </GridView>
+            <GridView android:id="@id/android:list"
+                      style="@style/BasicViewWrapped"
+                      android:layout_height="107dip"
+                      android:numColumns="4"
+                      android:horizontalSpacing="10dip">
+            </GridView>
+
+            <!-- Category header -->
+            <LinearLayout style="@style/Header">
+
+                <TextView style="@style/HeaderText" android:id="@+id/season_title"
+                          android:text="Comments"/>
+
+                <ImageView style="@style/BasicViewFilledHorizontally"
+                           android:src="@drawable/header_line"
+                           android:scaleType="fitXY"/>
+                <ScrollView style="@style/BasicViewFilledHorizontally">
+                    <ImageView style="@style/BasicViewFilledHorizontally"
+                               android:src="@drawable/program_info_comments"
+                               android:scaleType="centerCrop"
+                               android:paddingTop="10dip"/>
+                </ScrollView>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

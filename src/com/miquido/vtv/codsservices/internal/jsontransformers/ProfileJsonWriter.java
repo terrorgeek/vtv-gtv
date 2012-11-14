@@ -61,7 +61,7 @@ public class ProfileJsonWriter extends BaseJsonWriter implements JsonWriter<Prof
             if (hasValue(dataToUpdateIndicator.getCurrentChannelId()))
                 put(jsonObject, "current_channel_id", profile.getCurrentChannelId());
             if (hasValue(dataToUpdateIndicator.getRequestedChannelId()))
-                put(jsonObject, "requested_channel_id", profile.getRequestedChannelId());
+                put(jsonObject, "requested_channel_id", profile.getRequestedChannelId() );
 
 
             return jsonObject;

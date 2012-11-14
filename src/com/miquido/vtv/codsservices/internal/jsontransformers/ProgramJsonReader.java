@@ -31,7 +31,10 @@ public class ProgramJsonReader extends BaseJsonReader<Program> {
       result.setId(Id.severeValueOf(jsonObject.getString("id")));
       result.setName(jsonObject.getString("name"));
       result.setDescription(jsonObject.getString("description"));
-      result.setTagline(jsonObject.getString("tagline"));
+      result.setTagline(jsonObject.optString("tagline"));
+      result.setEpisodeName(jsonObject.optString("episode_name"));
+      result.setSeasonNo(jsonObject.optString("season_number"));
+      result.setEpisodeNo(jsonObject.optString("episode_number"));
     } catch (JSONException e) {
       throw new CodsResponseFormatException("Incorrect structure of Program in JSON formatted response.", e);
     } catch (ParseException e) {

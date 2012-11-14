@@ -5,9 +5,10 @@ import com.google.inject.Singleton;
 import com.miquido.vtv.bo.Id;
 import com.miquido.vtv.bo.Notification;
 import com.miquido.vtv.bo.Profile;
+import com.miquido.vtv.bo.ScheduleEntry;
 import com.miquido.vtv.codsservices.ProfilesCodsDao;
-import com.miquido.vtv.codsservices.dataobjects.RelatedDataCollection;
 import com.miquido.vtv.codsservices.dataobjects.PageParams;
+import com.miquido.vtv.codsservices.dataobjects.RelatedDataCollection;
 import com.miquido.vtv.codsservices.dataobjects.Subcollection;
 import com.miquido.vtv.codsservices.internal.httpjsonclient.CodsErrorsHandler;
 import com.miquido.vtv.codsservices.internal.httpjsonclient.CodsHttpJsonClient;
@@ -30,78 +31,104 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class ProfilesCodsDaoImpl implements ProfilesCodsDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProfilesCodsDao.class);
+  private static final Logger logger = LoggerFactory.getLogger(ProfilesCodsDao.class);
 
 
-    @Override public RelatedDataCollection<Profile> getFriends(String sessionId, Id profileId) {
-        return getFriends(sessionId, profileId, null);
-    }
+  @Override
+  public RelatedDataCollection<Profile> getFriends(String sessionId, Id profileId) {
+    return getFriends(sessionId, profileId, null);
+  }
 
-    @Override public RelatedDataCollection<Profile> getFriends(String sessionId, Id profileId, PageParams pageParams) {
-        logger.debug(String.format("ProfilesCodsDao.getFriends(%s, %s, %s)", sessionId, profileId, (pageParams!=null)?pageParams.toString():"null"));
+  @Override
+  public RelatedDataCollection<Profile> getFriends(String sessionId, Id profileId, PageParams pageParams) {
+    logger.debug(String.format("ProfilesCodsDao.getFriends(%s, %s, %s)", sessionId, profileId, (pageParams != null) ? pageParams.toString() : "null"));
 
-        CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.get(
-                String.format("/profiles/%s/friends", profileId),
-                CodsUrlParams.createNew()
-                        .addSession(sessionId)
-                        .addPageParams(pageParams));
+    CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.get(
+        String.format("/profiles/%s/friends", profileId),
+        CodsUrlParams.createNew()
+            .addSession(sessionId)
+            .addPageParams(pageParams));
 
-        codsErrorsHandler.handleCodsError(jsonResponse);
+    codsErrorsHandler.handleCodsError(jsonResponse);
 
-        return profileRelatedDataCollectionJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
-    }
+    return profileRelatedDataCollectionJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
+  }
 
-    public Profile update(String sessionId, Id profileId, Profile profileData) {
-        return update(sessionId, profileId, profileData, profileData);
-    }
-        @Override
-    public Profile update(String sessionId, Id profileId, Profile profileData, Profile dataToUpdateIndicator) {
-        logger.debug(String.format("ProfilesCodsDao.update(%s, %s, %s, %s)", sessionId, profileId, profileData, dataToUpdateIndicator));
+  public Profile update(String sessionId, Id profileId, Profile profileData) {
+    return update(sessionId, profileId, profileData, profileData);
+  }
 
-        JSONObject profileJson = profileJsonWriter.createJsonFromObject(profileData, dataToUpdateIndicator);
-        CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.put(
-                String.format("/profiles/%s", profileId),
-                CodsUrlParams.createNew().addSession(sessionId),
-                profileJson );
+  @Override
+  public Profile update(String sessionId, Id profileId, Profile profileData, Profile dataToUpdateIndicator) {
+    logger.debug(String.format("ProfilesCodsDao.update(%s, %s, %s, %s)", sessionId, profileId, profileData, dataToUpdateIndicator));
 
-        codsErrorsHandler.handleCodsError(jsonResponse);
+    JSONObject profileJson = profileJsonWriter.createJsonFromObject(profileData, dataToUpdateIndicator);
+    CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.put(
+        String.format("/profiles/%s", profileId),
+        CodsUrlParams.createNew().addSession(sessionId),
+        profileJson);
 
-        return profileJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
-    }
+    codsErrorsHandler.handleCodsError(jsonResponse);
 
-    @Override
-    public Subcollection<Notification> getProfileNotifications(String sessionId, Id profileId) {
-        return getProfileNotifications(sessionId, profileId, null);
-    }
-        @Override
-    public Subcollection<Notification> getProfileNotifications(String sessionId, Id profileId, PageParams pageParams) {
-        logger.debug(String.format("ProfilesCodsDao.getProfileNotifications(%s, %s, %s)", sessionId, profileId, (pageParams!=null)?pageParams.toString():"null"));
+    return profileJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
+  }
 
-        CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.get(
-                String.format("/profiles/%s/notifications", profileId),
-                CodsUrlParams.createNew()
-                        .addSession(sessionId)
-                        .addPageParams(pageParams));
+  @Override
+  public Subcollection<Notification> getProfileNotifications(String sessionId, Id profileId) {
+    return getProfileNotifications(sessionId, profileId, null);
+  }
 
-        codsErrorsHandler.handleCodsError(jsonResponse);
+  @Override
+  public Subcollection<Notification> getProfileNotifications(String sessionId, Id profileId, PageParams pageParams) {
+    logger.debug(String.format("ProfilesCodsDao.getProfileNotifications(%s, %s, %s)", sessionId, profileId, (pageParams != null) ? pageParams.toString() : "null"));
 
-        return notificationSubcollectionJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
-    }
+    CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.get(
+        String.format("/profiles/%s/notifications", profileId),
+        CodsUrlParams.createNew()
+            .addSession(sessionId)
+            .addPageParams(pageParams));
 
-    // ***************************** Private helper methods ***************************************************
+    codsErrorsHandler.handleCodsError(jsonResponse);
+
+    return notificationSubcollectionJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
+  }
+
+  @Override
+  public Subcollection<ScheduleEntry> getProfileSchedule(String sessionId, Id profileId) {
+    return getProfileSchedule(sessionId, profileId, null);
+  }
+
+  @Override
+  public Subcollection<ScheduleEntry> getProfileSchedule(String sessionId, Id profileId, PageParams pageParams) {
+    logger.debug(String.format("ProfilesCodsDao.getProfileSchedule(%s, %s, %s)", sessionId, profileId, (pageParams != null) ? pageParams.toString() : "null"));
+
+    CodsHttpJsonClient.JsonResponse jsonResponse = codsHttpJsonClient.get(
+        String.format("/profiles/%s/schedule", profileId),
+        CodsUrlParams.createNew()
+            .addSession(sessionId)
+            .addPageParams(pageParams));
+
+    codsErrorsHandler.handleCodsError(jsonResponse);
+
+    return scheduleEntrySubcollectionJsonReader.createObjectFromJson(jsonResponse.getJsonObject());
+  }
+
+  // ***************************** Private helper methods ***************************************************
 
 
-    // ***************************** DEPENDENCIES ************************************************************
-    @Inject
-    CodsHttpJsonClient codsHttpJsonClient;
-    @Inject
-    private CodsErrorsHandler codsErrorsHandler;
-    @Inject
-    RelatedDataCollectionJsonReader<Profile> profileRelatedDataCollectionJsonReader;
-    @Inject
-    SubcollectionJsonReader<Notification> notificationSubcollectionJsonReader;
-    @Inject
-    ProfileJsonWriter profileJsonWriter;
-    @Inject
-    ProfileJsonReader profileJsonReader;
+  // ***************************** DEPENDENCIES ************************************************************
+  @Inject
+  CodsHttpJsonClient codsHttpJsonClient;
+  @Inject
+  private CodsErrorsHandler codsErrorsHandler;
+  @Inject
+  RelatedDataCollectionJsonReader<Profile> profileRelatedDataCollectionJsonReader;
+  @Inject
+  SubcollectionJsonReader<Notification> notificationSubcollectionJsonReader;
+  @Inject
+  SubcollectionJsonReader<ScheduleEntry> scheduleEntrySubcollectionJsonReader;
+  @Inject
+  ProfileJsonWriter profileJsonWriter;
+  @Inject
+  ProfileJsonReader profileJsonReader;
 }

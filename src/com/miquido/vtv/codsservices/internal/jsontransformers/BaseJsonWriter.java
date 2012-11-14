@@ -30,10 +30,10 @@ public class BaseJsonWriter {
     }
 
     protected void put(JSONObject jsonObject, String jsonAttributeName, String value) throws JSONException {
-        jsonObject.put(jsonAttributeName, (value!=null)? value : JSONObject.NULL);
+        jsonObject.put(jsonAttributeName, (value!=null)? value : "");
     }
     protected void put(JSONObject jsonObject, String jsonAttributeName, Id id) throws JSONException {
-        jsonObject.put(jsonAttributeName, (id!=null)? id.toString() : JSONObject.NULL);
+        jsonObject.put(jsonAttributeName, (id!=null)? id.toString() : "");
     }
 
 }

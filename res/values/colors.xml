@@ -1,4 +1,5 @@
 <resources>
     <color name="red">#ffff0000</color>
     <color name="grey">#C1A39C</color>
+    <color name="gray">#ff757575</color>
 </resources>

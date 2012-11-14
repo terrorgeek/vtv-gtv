@@ -26,6 +26,7 @@ public class CodsDaoModule extends AbstractModule {
     bind(ChannelsCodsDao.class).to(ChannelsCodsDaoImpl.class);
     bind(NotificationsCodsDao.class).to(NotificationsCodsDaoImpl.class);
     bind(ProgramsCodsDao.class).to(ProgramsCodsDaoImpl.class);
+    bind(ProgramGuideCodsDao.class).to(ProgramGuideCodsDaoImpl.class);
   }
 
 

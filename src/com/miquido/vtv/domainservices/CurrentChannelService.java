@@ -73,13 +73,16 @@ public class CurrentChannelService implements CurrentChannelViewModel {
     Id currentlyWatchedChannel = currentChannelRepository.getCurrentlyWatchedChannelId();
     Profile profileChangeData = new Profile();
     profileChangeData.setCurrentChannelId( currentlyWatchedChannel );
+    profileChangeData.setRequestedChannelId(null);
     Profile changeDataIndicator = new Profile();
     changeDataIndicator.setCurrentChannelId(Id.valueOf("00000000-0000-0000-0000-000000000000"));
+    changeDataIndicator.setRequestedChannelId(Id.valueOf("00000000-0000-0000-0000-000000000000"));
 
     Profile resultProfile = profilesCodsDao.update(sessionRepository.getSession().getId(), sessionRepository.getCurrentUserProfile().getId(),
             profileChangeData, changeDataIndicator);
 
     sessionRepository.getCurrentUserProfile().setCurrentChannelId(resultProfile.getCurrentChannelId());
+    sessionRepository.getCurrentUserProfile().setRequestedChannelId(resultProfile.getRequestedChannelId());
   }
 
   private static boolean equalsChannelsId(Id id1, Id id2) {
@@ -126,7 +129,7 @@ public class CurrentChannelService implements CurrentChannelViewModel {
       Profile repositoryProfile = sessionRepository.getCurrentUserProfile();
       repositoryProfile.setRequestedChannelId(requestedChannelId);
 
-      logger.debug("Got requested channel id from CODS.{}", (requestedChannelId!=null)?requestedChannelId.toString():"null");
+      logger.debug("Got requested channel id from CODS: {}", (requestedChannelId!=null)?requestedChannelId.toString():"null");
 
     } catch (Exception e) {
       logger.warn("Exception while updating requested channel id from CODS.", e);
@@ -138,6 +141,9 @@ public class CurrentChannelService implements CurrentChannelViewModel {
    * If requested channel is different than currently watched channel, method returns id of requested channel. Otherwise null.
    */
   public Id getRemotelyRequestedChannelChange() {
+    if (sessionRepository.getCurrentUserProfile() == null) {
+      return null;
+    }
     Id requestedChannelId = sessionRepository.getCurrentUserProfile().getRequestedChannelId();
     Id currentlyWatchedChannelId = currentChannelRepository.getCurrentlyWatchedChannelId();
     if (requestedChannelId!=null && !requestedChannelId.equals(currentlyWatchedChannelId)) {

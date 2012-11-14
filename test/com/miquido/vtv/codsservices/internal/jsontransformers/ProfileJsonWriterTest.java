@@ -63,7 +63,7 @@ public class ProfileJsonWriterTest {
         assertEquals(channelId.toString(), jsonObject.get("current_channel_id"));
         assertEquals("testname", jsonObject.get("name"));
         assertEquals("offline", jsonObject.get("sip_status"));
-        assertEquals(JSONObject.NULL, jsonObject.get("description"));
+        assertEquals("", jsonObject.get("description"));
         assertTrue( !jsonObject.has("first_name"));
     }
 }

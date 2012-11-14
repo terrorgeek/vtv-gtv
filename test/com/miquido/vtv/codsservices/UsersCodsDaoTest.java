@@ -41,7 +41,7 @@ public class UsersCodsDaoTest {
 
         assertNotNull(session);
         assertNotNull(session.getId());
-        assertEquals(32, session.getId().length());
+        assertEquals(64, session.getId().length());
         assertEquals(UsersCommonTestData.USER_NAME, session.getUserName());
         assertNotNull(session.getUserId());
     }

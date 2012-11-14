@@ -24,7 +24,7 @@ import java.util.List;
  * Time: 16:14
  * To change this template use File | Settings | File Templates.
  */
-public class FriendsService implements FriendsViewModel {
+public class  FriendsService implements FriendsViewModel {
   private static final Logger logger = LoggerFactory.getLogger(FriendsService.class);
 
   @Override

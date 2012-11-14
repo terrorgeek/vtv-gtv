@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:paddingTop="5dip"
+              android:paddingBottom="5dip">
+
+    <ImageView android:id="@+id/upcomingProgramThumbnail"
+               android:layout_width="55dip"
+               android:layout_height="55dip"/>
+    <LinearLayout style="@style/BasicViewFilledHorizontally"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="10dip">
+        <TextView android:id="@+id/upcomingProgramName"
+                  style="@style/UpcomingShowsProgramName"
+                  android:text="True Blood"/>
+        <TextView android:id="@+id/upcomingProgramTime"
+                  style="@style/UpcomingShowsProgramTime"
+                  android:text="Sun, 11 nov, 11:00pm"/>
+        <ImageView style="@style/UpcomingShowsButtons"
+                   android:src="@drawable/dashboard_watching_buttons"/>
+    </LinearLayout>
+
+
+</LinearLayout>
