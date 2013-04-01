@@ -9,3 +9,4 @@ target/
 local.properties
 /tmp/**
 *.iml
+/bin/**
