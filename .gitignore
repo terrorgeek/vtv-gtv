@@ -1,4 +1,6 @@
 /.projects
+.classpath
+.project
 target/
 *.bak
 *.log
