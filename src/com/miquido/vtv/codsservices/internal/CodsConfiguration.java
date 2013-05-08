@@ -13,7 +13,7 @@ import lombok.Getter;
 @Singleton
 public class CodsConfiguration {
 
-    @Getter private String codsServerURL = "http://api.cods.pyctex.net/rest";
+    @Getter private String codsServerURL = "http://api.cods-dev.ngb.biz/rest";
     @Getter private String apiVersion = "v3";
     @Getter private String userAgent = "vTV Google TV Application";
 
