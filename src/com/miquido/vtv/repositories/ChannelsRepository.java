@@ -109,6 +109,7 @@ public class ChannelsRepository {
                 logger.debug(String.format("Channel with callSign: %s - %s", callSign, codsChannel.toString()));
             }
           if (callSign != null && !callSign.isEmpty() && callSignGtvChannelMap.containsKey(callSign)) {
+            logger.debug(String.format("Selectable Channel number %s with callSign: %s - %s", callSignGtvChannelMap.get(callSign).channelNumber, callSign, codsChannel.toString()));
             /*if ("USA".equals(callSign) || "TNT".equals(callSign)) {
               logger.info("Demo channel: {} with name: {} and CODS ID: {}", new Object[]{callSign, codsChannel.getName(), codsChannel.getId().toString()});*/
               selectableChannels.add(codsChannel);

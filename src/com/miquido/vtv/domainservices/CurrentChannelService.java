@@ -122,10 +122,6 @@ public class CurrentChannelService implements CurrentChannelViewModel {
 
       Profile newProfile = usersCodsDao.getCurrentUserProfile(sessionRepository.getSession().getId());
       Id requestedChannelId = newProfile.getRequestedChannelId();
-      if(!DemoChannels.CHANNEL_TNT.equals(requestedChannelId) && !DemoChannels.CHANNEL_USA.equals(requestedChannelId)) {
-        return;
-      }
-
       Profile repositoryProfile = sessionRepository.getCurrentUserProfile();
       repositoryProfile.setRequestedChannelId(requestedChannelId);
 
