@@ -1,4 +1,6 @@
 /.projects
+.classpath
+.project
 target/
 *.bak
 *.log
@@ -9,3 +11,4 @@ target/
 local.properties
 /tmp/**
 *.iml
+/bin/**
