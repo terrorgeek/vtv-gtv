@@ -32,8 +32,8 @@ public class ActorJsonReader extends BaseJsonReader<Actor> {
       result.setName(jsonObject.getString("name"));
       result.setPhotoId(Id.severeValueOf(jsonObject.getString("photo_id")));
       result.setDescription(jsonObject.getString("description"));
-      result.setNickname(jsonObject.getString("nickname"));
-      result.setBio(jsonObject.getString("bio"));
+      result.setNickname(jsonObject.optString("nickname"));
+      result.setBio(jsonObject.optString("bio"));
     } catch (JSONException e) {
       throw new CodsResponseFormatException("Incorrect structure of Actor in JSON formatted response.", e);
     } catch (ParseException e) {
