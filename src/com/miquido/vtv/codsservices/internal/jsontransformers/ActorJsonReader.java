@@ -10,6 +10,7 @@ import com.miquido.vtv.bo.Id;
 import com.miquido.vtv.codsservices.exceptions.CodsResponseFormatException;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.text.ParseException;
 

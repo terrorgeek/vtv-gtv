@@ -102,11 +102,15 @@ public class ProgramInfoFragment extends RoboFragment {
     Program currentlyWatchedProgram = currentlyWatchedProgramChanged.getCurrentlyWatchedProgram();
     if (currentlyWatchedProgram != null && StringUtils.isNotBlank(currentlyWatchedProgram.getName())) {
       programTitle.setText(currentlyWatchedProgram.getName());
-      programDescription.setText(StringUtils.isNotBlank(currentlyWatchedProgram.getDescription()) ? currentlyWatchedProgram.getDescription() : "");
+      String descr = StringUtils.isNotBlank(currentlyWatchedProgram.getDescription()) ? currentlyWatchedProgram.getDescription() : "";
+      if(descr.startsWith("Lorem ipsum") || descr == null || (descr != null && descr.equals("null"))){
+      	descr = "The team investigates after a homeless teenager is found burned to death outside a restaurant. The victim's father tells them there could be a link with some violent videos uploaded to the internet, so the team sets up a sting operation which eventually leads them to the same school the dead man had attended - and two groups of girls who are very single-minded";
+      }
+      programDescription.setText(descr);
       actorsGridViewAdapter.updateActors(currentlyWatchedProgram.getActors());
       seasonTitle.setText("Season " + (currentlyWatchedProgram.getSeasonNo() == null ? "" :currentlyWatchedProgram.getSeasonNo()) + ", " +
           "Episode " + (currentlyWatchedProgram.getEpisodeNo() == null ? "" :currentlyWatchedProgram.getEpisodeNo()));
-      seasonDescription.setText(currentlyWatchedProgram.getDescription());
+      seasonDescription.setText(descr);
       seasonSubtitle.setText(currentlyWatchedProgram.getEpisodeName());
       String episodeNo = currentlyWatchedProgram.getEpisodeNo();
 //      if (episodeNo == null) {

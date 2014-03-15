@@ -3,6 +3,7 @@ package com.miquido.vtv.view.activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,15 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.inject.Inject;
 import com.miquido.vtv.R;
 import com.miquido.vtv.controllers.MainController;
@@ -25,6 +34,7 @@ import roboguice.activity.RoboFragmentActivity;
 import roboguice.event.Observes;
 import roboguice.inject.InjectFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,16 +84,68 @@ public class VTVMainActivity extends RoboFragmentActivity {
    */
   @Override
   public void onCreate(Bundle savedInstanceState) {
+	  
     logger.debug("vTV: Starting application");
     super.onCreate(savedInstanceState);
-    if (handler == null) handler = new Handler();
+    if (handler == null) handler = new Handler(); 
+    
     setContentView(R.layout.main);
+    ImageButton netflix = (ImageButton) findViewById(R.id.program_info_synopsis);
+    netflix.setOnClickListener(new View.OnClickListener(){
+        public void onClick(View v){
+                Toast.makeText(getApplicationContext(),"netflix start!", Toast.LENGTH_LONG).show();
+                ComponentName componentName=new ComponentName("com.google.tv.netflix","com.google.tv.netflix.NetflixActivity");
+                Intent intent=new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                intent.setData(Uri.parse("nflx://p=http://api.netflix.com/catalog/titles/movies/70136344&trackId=2735185&trackUrl=/HTMLTVUI?#GoogleTvSearch?"));
+                //Bundle bundle = new Bundle();
+                //intent.putExtra("dat", " cmp=com.google.tv.netflix/.NetflixActivity");
+//                 bundle.putSerializable("", value);
+                //intent.putExtras(bundle);
+                intent.setComponent(componentName);
+//                 intent.addCategory("android.intent.category.LAUNCHER");
+                startActivity(intent);
+      
+
+        }
+        
+    });
+    
+    
     logger.debug("onCreate: fire event initcommand: ");
     eventManager.fire(new InitCommand());
     logger.debug("onCreate: event initcommand fired");
 //    engine = Engine.getInstance(this, this);
-
-
+     
+    LinearLayout lsongyu=(LinearLayout)findViewById(R.id.songyu);
+    ArrayList<String> times=VTVMainActivity_Helper.Get_Time_Line_List();
+    //first add the image of arrow
+   /* ImageView left_arrow=new ImageView(this.getApplicationContext(),null,R.style.BasicViewWrapped);
+    left_arrow.setImageResource(R.drawable.guide_arrow_left);
+    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)left_arrow.getLayoutParams();
+    params.setMargins(0, 0, 20, 0); //substitute parameters for left, top, right, bottom
+    left_arrow.setLayoutParams(params);
+    lsongyu.addView(left_arrow);*/
+    for(int i=0;i<times.size();i++)
+    {
+    	ImageView img=new ImageView(this.getApplicationContext(),null,R.style.BasicViewWrapped);
+    	img.setImageResource(R.drawable.guide_hour_divider);
+    	lsongyu.addView(img);
+    	
+    	TextView temp_textview=new TextView(this.getApplicationContext());
+    	temp_textview.setText(times.get(i));
+    	//temp_textview.setTextAppearance(getApplicationContext(), R.style.GuideTime);
+    	LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, 500, 0); //substitute parameters for left, top, right, bottom
+        temp_textview.setLayoutParams(params);
+        temp_textview.setTextSize(10);
+    	lsongyu.addView(temp_textview);
+    }
+    ImageView right_arrow=new ImageView(this.getApplicationContext(),null,R.style.BasicViewWrapped);
+    right_arrow.setImageResource(R.drawable.guide_arrow_right);
+    LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams)right_arrow.getLayoutParams();
+ //   right_arrow.setLayoutParams(params2);
+    lsongyu.addView(right_arrow);
   }
 
 //  @Override

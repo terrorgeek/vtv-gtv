@@ -16,15 +16,19 @@ import org.slf4j.LoggerFactory;
  * @author miquido.com
  */
 public class GuideItem extends LinearLayout {
-
+  
   private static final Logger log = LoggerFactory.getLogger(GuideItem.class);
 
   private TextView programTitle;
-
+  
   private TextView programTime;
 
   boolean isSelected;
-
+  //this property is created by Yu Song
+  public String description="";
+  public String start_time="";
+  public String programTitle_Display;
+  //end
   public boolean isSelected() {
     return isSelected;
   }
@@ -55,16 +59,25 @@ public class GuideItem extends LinearLayout {
     this.setBackgroundDrawable(getResources().getDrawable(R.drawable.guide_item_background_selector));
   }
 
-  public GuideItem(Context context) {
+  public GuideItem(Context context,int width) {
     super(context);
-    inflateLayout(context);
+    inflateLayout(context,width);
   }
 
-  private void inflateLayout(Context context) {
+  private void inflateLayout(Context context,int width) {
     final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.guide_item, this);
+    if(width<=147)
+    	 inflater.inflate(R.layout.guide_item_without_buttons, this);
+	else if(width>147&&width<=293)
+		 inflater.inflate(R.layout.guide_item, this);
+	else
+		 inflater.inflate(R.layout.guide_item, this);
+ //   inflater.inflate(R.layout.guide_item, this);
     this.programTitle = (TextView) findViewById(R.id.programTitle);
     this.programTime = (TextView) findViewById(R.id.programTime);
+//    LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(this.getLayoutParams());
+//    lp.leftMargin=100;
+//    this.setLayoutParams(lp);
     this.setClickable(true);
     this.setFocusable(true);
   }

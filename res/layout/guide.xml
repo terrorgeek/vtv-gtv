@@ -26,12 +26,16 @@
 
                 <LinearLayout style="@style/BasicViewFilledHorizontally"
                               android:gravity="center_vertical"
-                              android:layout_marginBottom="5dip">
-                    <ImageView style="@style/BasicViewWrapped"
+                              android:layout_marginBottom="15dip"  
+                              android:layout_marginTop="0dip"
+                              android:layout_width="24200dip"
+                              android:id="@+id/songyu">
+                              
+                     <ImageView style="@style/BasicViewWrapped"
                                android:src="@drawable/guide_arrow_left"
                                android:layout_marginRight="20dip"/>
 
-                    <ImageView style="@style/BasicViewWrapped"
+                   <!--<ImageView style="@style/BasicViewWrapped"
                                android:src="@drawable/guide_hour_divider"/>
 
                     <TextView style="@style/GuideTime"
@@ -65,10 +69,10 @@
                                android:src="@drawable/guide_hour_divider"/>
 
                     <TextView style="@style/GuideTime"
-                              android:text="7:00pm"/>
+                              android:text="7:00pm"/>   -->
 
-                    <ImageView style="@style/BasicViewWrapped"
-                               android:src="@drawable/guide_arrow_right"/>
+                    <!-- <ImageView style="@style/BasicViewWrapped"
+                               android:src="@drawable/guide_arrow_right"/> -->
 
                 </LinearLayout>
 

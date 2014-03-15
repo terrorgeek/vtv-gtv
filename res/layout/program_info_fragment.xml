@@ -48,12 +48,16 @@
 
             </LinearLayout>
 
-            <ScrollView style="@style/BasicViewFilledHorizontally">
-                <ImageView android:id="@+id/program_info_synopsis"
-                           style="@style/BasicViewFilledHorizontally"
-                           android:src="@drawable/program_info_synopsis"
-                           android:scaleType="centerCrop"
-                           android:paddingTop="30dip"/>
+            <ScrollView style="@style/BasicViewFilledHorizontally" android:layout_height="375dp">
+                <ImageButton
+                   android:id="@+id/program_info_synopsis"
+                   style="@style/BasicViewFilledHorizontally"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:paddingTop="30dip"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/program_info_synopsis"
+                   android:background="#00000000"/>
             </ScrollView>
         </LinearLayout>
 

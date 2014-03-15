@@ -47,14 +47,14 @@
 
 
     <style name="GuideTime" parent="BasicTextView">
-        <item name="android:textSize">16dip</item>
+        <item name="android:textSize">20dip</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:layout_marginRight">30dip</item>
+        <item name="android:layout_marginRight">250dip</item>
     </style>
 
     <style name="GuideItemTitle" parent="BasicTextView">
-        <item name="android:textSize">12dip</item>
+        <item name="android:textSize">10dip</item>
         <item name="android:textStyle">bold</item>
     </style>
 
